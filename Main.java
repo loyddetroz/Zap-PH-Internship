@@ -1,96 +1,45 @@
-import java.util.Arrays;
 import java.util.Scanner;
-
-//    get balance : PhoneNumber,Pin,MerchantName
-//    get coupons : PhoneNumber,Pin,MerchantName
-//    open branches nearby : MerchantName,Long,Lat
-//    my rank : PhoneNumber,Pin,MerchantName
-//    ongoing promotions : Merchant,Branch,Branch,Branch,...
-//    void transaction (or void tx) : refNo,reason
-//    deactivate user : PhoneNumber
-//    list branches : MerchantName
-//    branch address : BranchName
-//    opening hours of branch : BranchName
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        boolean terminate = false;
-        boolean firstTime = true;
-        while (!terminate) {
-            String input = scanner.nextLine();
+        int isFirstTime = true;
 
-            if (firstTime) {
-                System.out.println("How can I help you?");
-                firstTime = false;
-            } else {
-                if (input.toLowerCase().contains("bye")) {
-                    System.out.println("Good bye!");
-                    terminate = true;
-                } else if (input.toLowerCase().contains("get balance")) {
-                    if (confirm(input)) {
-                        getBalance();
-                    }
-                } else {
-                    System.out.println("Commands:");
-                    System.out.println("get balance");
-                    System.out.println("get coupons");
-                    System.out.println("open branches nearby");
-                    System.out.println("my rank");
-                    System.out.println("ongoing promotions");
-                    System.out.println("void transactions");
-                    System.out.println("deactivate user");
-                    System.out.println("list branches");
-                    System.out.println("branch address");
-                    System.out.println("opening hours of branch");
-                }
-            }
-
-
-
-        }
-
-    }
-
-    public static boolean confirm(String i) {
-        System.out.println("I would like to confirm if you wish to " + i.toLowerCase() + ".");
-        String input = scanner.nextLine();
-
-        if (input.toLowerCase().contains("yes") || input.toLowerCase().contains("oo") || input.toLowerCase().contains("yup")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public static void getBalance() {
         while (true) {
-            System.out.println("Alright, kindly enter the following BALANCE<SPACE>pin<SPACE>merchant. Example: 09176780012 123456 Angus");
-            String entry = scanner.nextLine();
-
-            System.out.println("Confirming request: " + entry + ".");
             String input = scanner.nextLine();
 
-            if (input.toLowerCase().contains("yes") || input.toLowerCase().contains("oo") || input.toLowerCase().contains("yup")) {
-                String[] entries = entry.split(" ");
-                String[] modifiedEntries = Arrays.copyOfRange(entries, 1, entries.length);
-//                for (int j = 0; j < modifiedEntries.length; j++) {
-//                    System.out.println(modifiedEntries[j]);
-//                }
-                if (modifiedEntries.length == 3) {
-                    System.out.println("Success! Your balance is [123] " + modifiedEntries[2] + " points.");
-                    break;
-                } else if (modifiedEntries.length < 3) {
-                    // To do //
-                    System.out.println("You lack <Field>");
-                }
-            } else {
-                System.out.println("Please try again.");
+            if (isFirstTime) {
+                is isFirstTime = false;
             }
+            System.out.println("I would like to confirm if you wish to " + input);
+            System.out.println(printCommandResponse(input));
         }
-
     }
 
+    private static String printCommandResponse(String command) {
+        if (command.toLowerCase().contains("get balance")) {
+            return "Alright, kindly enter the following BALANCE<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: BALANCE 09176780012 123456 Angus";
+        } else if (command.toLowerCase().contains("get coupons")) {
+            return "Alright, kindly enter the following COUPONS<SPACE>phoneNumber<SPACE>pin. Example: COUPONS 09176780012 123456";
+        } else if (command.toLowerCase().contains("open branches nearby")) {
+            return "Alright, kindly enter the following OPEN_BRANCHES<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: OPEN_BRANCHES 09176780012 123456 Angus";
+        } else if (command.toLowerCase().contains("my rank")) {
+            return "Alright, kindly enter the following RANK<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: RANK 09176780012 123456 Angus";
+        } else if (command.toLowerCase().contains("ongoing promotions")) {
+            return "Alright, kindly enter the following PROMOTIONS<SPACE>merchantName<SPACE>branch1<SPACE>branch.. (Separated by space for each branch) Example: PROMOTIONS Angus Branch1 Branch2 Branch3..)";
+        } else if (command.toLowerCase().contains("void transaction")) {
+            return "Alright, kindly enter the following VOID_TX<SPACE>refNo<SPACE>reason Example: VOID_TX 1234567 Reason";
+        } else if (command.toLowerCase().contains("deactivate user")) {
+            return "Alright, kindly enter the following DEACTIVATE<SPACE>UserId Example: DEACTIVATE 123456";
+        } else if (command.toLowerCase().contains("list branches")) {
+            return "Alright, kindly enter the following LIST_BRANCHES<SPACE>merchantName Example: LIST_BRANCHES Angus";
+        } else if (command.toLowerCase().contains("branch address")) {
+            return "Alright, kindly enter the following ADDRESS_BRANCH<SPACE>branchName EXAMPLE: ADDRESS_BRANCH Angus";
+        } else if (command.toLowerCase().contains("opening hours of branch")) {
+            return "Alright, kindly enter the following OPENING_HOURS<SPACE>branchName Example: OPENING_HOURS Angus";
+        }
 
+        return "";
+    }
 }
