@@ -4,16 +4,19 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int isFirstTime = true;
+        boolean isFirstTime = true;
 
         while (true) {
             String input = scanner.nextLine();
 
             if (isFirstTime) {
-                is isFirstTime = false;
+                System.out.println("How can I help you?");
+                isFirstTime = false;
+            } else {
+                // System.out.println("I would like to confirm if you wish to " + input);
+                System.out.println(printCommandResponse(input));
             }
-            System.out.println("I would like to confirm if you wish to " + input);
-            System.out.println(printCommandResponse(input));
+
         }
     }
 
