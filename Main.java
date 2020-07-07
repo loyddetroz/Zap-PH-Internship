@@ -11,7 +11,11 @@ public class Main {
         states[1] = new State2();
         states[2] = new State3();
         states[3] = new State4();
-
+        
+        if (scanner.nextLine() != "") {
+        	System.out.println("How can I help you?");
+        }
+        
         while (true) {
             State state = states[currentState];
             String input = scanner.nextLine();
