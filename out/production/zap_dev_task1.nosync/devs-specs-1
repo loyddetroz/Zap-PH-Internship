@@ -1,0 +1,52 @@
+-> <random user input>
+"How can I help you?"
+-> <request command>
+"I would like to confirm if you wish to <command>"
+-> yes / yup / oo / yessss
+"alright, kindly enter the following BALANCE<SPACE>pin<SPACE>merchant. Example: 09176780012 123456 Angus"
+-> <input message>
+"Confirming, request: Get Balance, Number: 09176780012, Pin: 123456, Merchant: Angus"
+-> yes
+"Success, your balance is 123 <Merchant> points" / "You lack <Field>"
+
+<request command>
+get balance : PhoneNumber,Pin,MerchantName
+get coupons : PhoneNumber,Pin,MerchantName
+open branches nearby : MerchantName,Long,Lat
+my rank : PhoneNumber,Pin,MerchantName
+ongoing promotions : Merchant,Branch,Branch,Branch,...
+void transaction (or void tx) : refNo,reason
+deactivate user : PhoneNumber
+list branches : MerchantName
+branch address : BranchName
+opening hours of branch : BranchName
+
+<key words / phrases>
+BALANCE phoneNumber Pin MerchantName
+COUPONS phoneNumber Pin MerchantName
+OPEN_BRANCHES MerchantName Long Lat
+RANK PhoneNUmber Pin MerchantName
+PROMOTIONS Merchant Branch1 Branch2 Branch3 Branch4 
+VOID_TX RefNo Reason
+DEACTIVATE UserId
+LIST_BRANCHES MerchantName
+ADDRESS_BRANCH Branchname
+OPENING_HOURS BranchName
+*Can handle multiple cases, upper & lower cases
+
+**Anytime a chatter inputs a key phrase, the flow stops and immediately proceeds to confirm command
+-> get balance
+"I would like to know if you wish to get balance"
+-> OPEN_BRANCHES Pepper Lunch
+**Anytime a chatter inputs a key word for the request command, the flow stops and immedialtey proceeds again to confirm
+-> get coupons
+"I would like to confirm if you wish to get coupons"
+-> get points
+"I would like to confirm if you wish to get your points"
+
+**An indecipherable phrase will result in a list of request commands will be listed down
+**A no answer will go back to the flow of the conversation
+**merchant names can have spaces
+**branch names can have spaces
+
+**no need to use regex / splitAt
