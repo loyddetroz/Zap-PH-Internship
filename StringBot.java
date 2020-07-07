@@ -19,6 +19,7 @@ public class StringBot {
 		confirms[2] = "oo";
 		confirms[3] = "yessss";
 		Scanner scan= new Scanner(System.in);
+
 		while(scan.hasNextLine()) {
 		if (scan.nextLine() != " ")
 		{

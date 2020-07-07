@@ -1,8 +1,6 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class State1 extends State {
-    Scanner scanner = new Scanner(System.in);
     private String[] commands = new String[10];
 
     public State1() {

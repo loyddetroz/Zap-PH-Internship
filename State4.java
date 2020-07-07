@@ -1,41 +1,21 @@
-import java.util.*;
-
-public class State2 extends State {
-    private String[] commands = new String[10];
-
-    public State2() {
-        commands[0] = "get balance";
-        commands[1] = "get coupons";
-        commands[2] = "get open branches nearby";
-        commands[3] = "get my rank";
-        commands[4] = "know ongoing promotions";
-        commands[5] = "void transaction";
-        commands[6] = "deactivate user";
-        commands[7] = "list branches";
-        commands[8] = "get branch address";
-        commands[9] = "get opening hours of branch";
-    }
+public class State4 extends State {
 
     @Override
     public ResultState process(String input, String command, int prevState) {
         ResultState resultState = new ResultState();
 
-        resultState.setNextMessage("How can I help you?");
-        resultState.setCommand("");
-        resultState.setNextState(0);
-
-        if (Arrays.asList(commands).contains(input)) {
-            resultState.setNextState(1);
-            resultState.setCommand(input);
-            resultState.setNextMessage("I would like to confirm if you wish to " + input + ".");
-        } else if (input.toLowerCase().contains("yes") && Arrays.asList(commands).contains(command)) {
+        if (input.toLowerCase().contains("yes")) {
+            resultState.setNextState(4);
+            resultState.setCommand(command);
+            resultState.setNextMessage("Success");
+        } else {
             resultState.setNextState(2);
             resultState.setCommand(command);
             resultState.setNextMessage(printCommandResponse(command));
         }
 
-
         return resultState;
+
     }
 
     private static String printCommandResponse(String command) {
