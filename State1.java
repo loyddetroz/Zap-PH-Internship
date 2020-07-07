@@ -20,7 +20,7 @@ public class State1 extends State {
     public ResultState process(String input, String command, int prevState) {
         ResultState resultState = new ResultState();
 
-        resultState.setNextMessage("How can I help you?");
+        resultState.setNextMessage(""List of Request Commands: " + "\n" + commands[0] + "\n" + commands[1] + "\n" + commands[2] + "\n" + commands[3] + "\n" + commands[4] + "\n" + commands[5] + "\n" + commands[6] + "\n" + commands[7] + "\n" + commands[8] + "\n" + commands[9]");
         resultState.setCommand("");
         resultState.setNextState(0);
 
