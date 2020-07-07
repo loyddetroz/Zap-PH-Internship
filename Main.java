@@ -24,7 +24,7 @@ public class Main {
             String output = resultState.getNextMessage();
             currentCommand = resultState.getCommand();
             currentState = resultState.getNextState();
-            System.out.println(currentState + " " + currentCommand + " " + output);
+            System.out.println(currentState + " " +  currentCommand + " " + output);
 
         }
 
