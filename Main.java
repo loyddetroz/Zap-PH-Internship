@@ -5,6 +5,15 @@ public class Main {
     private static String currentCommand = "";
     private static int currentState = 0;
     private static State[] states = new State[4];
+    public static String[] data;
+
+    public static String[] getData() {
+        return data;
+    }
+
+    public static void setData(String[] data) {
+        Main.data = data;
+    }
 
     public static void main(String[] args) {
         states[0] = new State1();
@@ -19,13 +28,13 @@ public class Main {
         while (true) {
             State state = states[currentState];
             String input = scanner.nextLine();
-            ResultState resultState = state.process(input, currentCommand, currentState);
+            ResultState resultState = state.process(input, currentCommand);
 
             String output = resultState.getNextMessage();
             currentCommand = resultState.getCommand();
             currentState = resultState.getNextState();
             System.out.println(currentState + " " +  currentCommand + " " + output);
-
+//            System.out.println(output);
         }
 
     }

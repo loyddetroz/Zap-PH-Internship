@@ -1,17 +1,20 @@
+import java.util.Arrays;
+
 public class State4 extends State {
 
     @Override
-    public ResultState process(String input, String command, int prevState) {
+    public ResultState process(String input, String command) {
         ResultState resultState = new ResultState();
 
         if (input.toLowerCase().contains("yes")) {
-            resultState.setNextState(4);
+            resultState.setNextState(0);
             resultState.setCommand(command);
-            resultState.setNextMessage("Success");
-        } else {
+            String[] data = Main.getData();
+            resultState.setNextMessage(data[1]);
+        } else if (Arrays.asList(CommandList.getCommands()).contains(input.toLowerCase())) {
             resultState.setNextState(2);
-            resultState.setCommand(command);
-            resultState.setNextMessage(printCommandResponse(command));
+            resultState.setCommand(input);
+            resultState.setNextMessage(printCommandResponse(input));
         }
 
         return resultState;

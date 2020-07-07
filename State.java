@@ -1,5 +1,5 @@
 public abstract class State {
-    public ResultState process(String input, String command, int prevState) {
+    public ResultState process(String input, String command) {
         return new ResultState();
     }
 }
