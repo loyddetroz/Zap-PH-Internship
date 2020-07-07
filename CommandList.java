@@ -43,7 +43,7 @@ public class CommandList {
         hashtable.put(commands[9], "Alright, kindly enter the following OPENING_HOURS<SPACE>branchName Example: OPENING_HOURS Angus");
 
         if (hashtable.get(command) == null) {
-            return "Sorry something went wrong.";
+            return "Sorry something went wrong. Please try another command.";
         } else {
             return hashtable.get(command);
         }
