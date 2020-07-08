@@ -5,8 +5,13 @@ public class State2 extends State {
     @Override
     public ResultState process(String input, String command) {
         String[] commands = CommandList.getCommands();
+        String[] keys = CommandList.getKeys();
         ResultState resultState = new ResultState();
-
+        for (int i = 0; i < keys.length; i++) {
+			if(input.toUpperCase().equals(keys[i])) {
+				input = commands[i];
+			}
+		}
         resultState.setNextMessage("How can I help you?");
         resultState.setCommand("");
         resultState.setNextState(0);
