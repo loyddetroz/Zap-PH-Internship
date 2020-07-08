@@ -7,7 +7,7 @@ public class State1 extends State {
         String[] commands = CommandList.getCommands();
         String[] keys = CommandList.getKeys();
         ResultState resultState = new ResultState();
-        String list = "\n" + "List of Request Commands: ";
+        String list = "List of Request Commands: ";
         for (String str : commands) {
             list = list + "\n" + str;
         }
