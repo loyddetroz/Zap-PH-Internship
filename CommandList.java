@@ -2,6 +2,7 @@ import java.util.*;
 
 public class CommandList {
     private static String[] commands = new String[10];
+    private static String[] keys = new String[10];
 
     public static String[] getCommands() {
         commands[0] = "get balance";
@@ -17,7 +18,22 @@ public class CommandList {
 
         return commands;
     }
+    
+    public static String[] getKeys() {
+        keys[0] = "BALANCE"; 
+        keys[1] = "COUPONS";
+        keys[2] = "OPEN_BRANCHES";
+        keys[3] = "RANK";
+        keys[4] = "PROMOTIONS"; 
+        keys[5] = "VOID_TX"; 
+        keys[6] = "DEACTIVATE"; 
+        keys[7] = "LIST_BRANCHES"; 
+        keys[8] = "ADDRESS_BRANCH"; 
+        keys[9] = "OPENING_HOURS"; 
 
+        return keys;
+    }
+    
     public static String printCommandResponse(String command) {
         Hashtable<String, String> hashtable = new Hashtable<>();
         commands[0] = "get balance";
