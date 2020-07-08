@@ -44,13 +44,13 @@ public class CommandList {
 
         hashtable.put(commands[0], "Alright, kindly enter the following BALANCE<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: BALANCE 09176780012 123456 Angus");
         hashtable.put(commands[1], "Alright, kindly enter the following COUPONS<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: COUPONS 09176780012 123456 Angus");
-        hashtable.put(commands[2], "Alright, kindly enter the following OPEN_BRANCHES<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: OPEN_BRANCHES 09176780012 123456 Angus");
+        hashtable.put(commands[2], "Alright, kindly enter the following OPEN_BRANCHES<SPACE>merchantName<SPACE>Long<SPACE>Lat. Example: OPEN_BRANCHES Angus 80 90");
         hashtable.put(commands[3], "Alright, kindly enter the following RANK<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: RANK 09176780012 123456 Angus");
         hashtable.put(commands[4], "Alright, kindly enter the following PROMOTIONS<SPACE>merchantName<SPACE>branch1<SPACE>branch.. (Separated by space for each branch) Example: PROMOTIONS Angus Branch1 Branch2 Branch3..)");
         hashtable.put(commands[5], "Alright, kindly enter the following VOID_TX<SPACE>refNo<SPACE>reason Example: VOID_TX 1234567 Reason");
         hashtable.put(commands[6], "Alright, kindly enter the following DEACTIVATE<SPACE>UserId Example: DEACTIVATE 123456");
         hashtable.put(commands[7], "Alright, kindly enter the following LIST_BRANCHES<SPACE>merchantName Example: LIST_BRANCHES Angus");
-        hashtable.put(commands[8], "Alright, kindly enter the following ADDRESS_BRANCH<SPACE>branchName EXAMPLE: ADDRESS_BRANCH Angus");
+        hashtable.put(commands[8], "Alright, kindly enter the following ADDRESS_BRANCH<SPACE>branchName Example: ADDRESS_BRANCH Angus");
         hashtable.put(commands[9], "Alright, kindly enter the following OPENING_HOURS<SPACE>branchName Example: OPENING_HOURS Angus");
 
         if (hashtable.get(command) == null) {
