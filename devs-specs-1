@@ -22,16 +22,16 @@ branch address : BranchName
 opening hours of branch : BranchName
 
 <key words / phrases>
-BALANCE phoneNumber Pin MerchantName
-COUPONS phoneNumber Pin MerchantName
-OPEN_BRANCHES MerchantName Long Lat
-RANK PhoneNUmber Pin MerchantName
-PROMOTIONS Merchant Branch1 Branch2 Branch3 Branch4 
-VOID_TX RefNo Reason
-DEACTIVATE UserId
-LIST_BRANCHES MerchantName
-ADDRESS_BRANCH Branchname
-OPENING_HOURS BranchName
+BALANCE phoneNumber Pin MerchantName 3
+COUPONS phoneNumber Pin MerchantName 3
+OPEN_BRANCHES MerchantName Long Lat 3
+RANK PhoneNUmber Pin MerchantName 3
+PROMOTIONS Merchant Branch1 Branch2 Branch3 Branch4
+VOID_TX RefNo Reason 2
+DEACTIVATE UserId 1
+LIST_BRANCHES MerchantName 1
+ADDRESS_BRANCH Branchname 1
+OPENING_HOURS BranchName 1
 *Can handle multiple cases, upper & lower cases
 
 **Anytime a chatter inputs a key phrase, the flow stops and immediately proceeds to confirm command

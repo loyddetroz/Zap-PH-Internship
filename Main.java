@@ -28,6 +28,11 @@ public class Main {
         while (true) {
             State state = states[currentState];
             String input = scanner.nextLine();
+
+            if (input.toLowerCase().contains("bye")) {
+                break;
+            }
+
             ResultState resultState = state.process(input, currentCommand);
 
             String output = resultState.getNextMessage();
