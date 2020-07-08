@@ -16,6 +16,8 @@ public class State1 extends State {
 				input = commands[i];
 			}
 		}
+
+
         resultState.setNextMessage(list);
         resultState.setCommand("");
         resultState.setNextState(0);

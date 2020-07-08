@@ -10,7 +10,7 @@ public class State4 extends State {
             resultState.setNextState(0);
             resultState.setCommand(command);
             String[] data = Main.getData();
-            resultState.setNextMessage(command + data[0] + "\n" + "Anything else I can help you with?");
+            resultState.setNextMessage(command + " " + data[0] + "\n" + "Anything else I can help you with?");
         } 
         else if (Arrays.asList(CommandList.getCommands()).contains(input.toLowerCase())) {
             resultState.setNextState(2);
