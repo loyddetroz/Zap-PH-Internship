@@ -17,7 +17,6 @@ public class State1 extends State {
 			}
 		}
 
-
         resultState.setNextMessage(list);
         resultState.setCommand("");
         resultState.setNextState(0);

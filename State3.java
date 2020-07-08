@@ -9,9 +9,9 @@ public class State3 extends State {
         String[] entries = input.split(" ");
         String[] modifiedEntries = Arrays.copyOfRange(entries, 1, entries.length);
         int n = CommandList.validateKeywords(command, modifiedEntries);
-        // How do you validate the inputs?
-        // Works with 3 fields only--must fix this.
-        // Create a function that will validate the string based on the command
+
+        // to do
+        // validate branches or merchant names with spaces
         if (Arrays.asList(commands).contains(input)) {
             resultState.setNextState(2);
             resultState.setCommand(input.toLowerCase());
