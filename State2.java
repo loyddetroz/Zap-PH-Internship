@@ -30,7 +30,7 @@ public class State2 extends State {
             } else if (modifiedEntries.length < m){
                 resultState.setNextState(2);
                 resultState.setCommand(entries[0]);
-                resultState.setNextMessage("You lack a field kindly re-enter the requested information." + input);
+                resultState.setNextMessage("You lack a field kindly re-enter the requested information.");
             } else {
                 resultState.setNextState(2);
                 resultState.setCommand(entries[0]);
