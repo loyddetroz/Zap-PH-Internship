@@ -25,7 +25,7 @@ public class Main {
         	System.out.println("How can I help you?");
         }
 
-        DataRetriever.display();
+        System.out.println(DataRetriever.display("639000000002"));
         
         while (true) {
             State state = states[currentState];
