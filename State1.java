@@ -23,8 +23,8 @@ public class State1 extends State {
     			}
     		}
         	resultState.setNextState(2);
-            resultState.setCommand(command.toLowerCase());
-            resultState.setNextMessage(CommandList.printCommandResponse(command));
+            resultState.setCommand(input);
+            resultState.setNextMessage(CommandList.printCommandResponse(input));
         }
         else if (Arrays.asList(commands).contains(input.toLowerCase())) {
             resultState.setNextState(1);
