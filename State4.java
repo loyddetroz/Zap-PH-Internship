@@ -20,7 +20,7 @@ public class State4 extends State {
         else {
         	resultState.setNextState(0);
         	resultState.setCommand("");
-        	resultState.setNextMessage("How can I help you?");           
+        	resultState.setNextMessage("How can I help you?");
         }
         return resultState;
 
