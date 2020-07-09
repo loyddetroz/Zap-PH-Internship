@@ -7,12 +7,23 @@ public class State3 extends State {
         String[] commands = CommandList.getCommands();
         ResultState resultState = new ResultState();
         String[] entries = input.split(" ");
+        String[] keys = CommandList.getKeys();
         String[] modifiedEntries = Arrays.copyOfRange(entries, 1, entries.length);
         int n = CommandList.validateKeywords(command, modifiedEntries);
 
         // to do
         // validate branches or merchant names with spaces
-        if (Arrays.asList(commands).contains(input)) {
+        if (Arrays.asList(keys).contains(input.toUpperCase())) {
+            for (int i = 0; i < keys.length; i++) {
+                if(input.toUpperCase().equals(keys[i])) {
+                    input = commands[i];
+                }
+            }
+            resultState.setNextState(2);
+            resultState.setCommand(input);
+            resultState.setNextMessage(CommandList.printCommandResponse(input));
+        }
+        else if (Arrays.asList(commands).contains(input)) {
             resultState.setNextState(2);
             resultState.setCommand(input.toLowerCase());
             resultState.setNextMessage(CommandList.printCommandResponse(input));
