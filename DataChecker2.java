@@ -19,7 +19,7 @@ public class DataChecker2 {
             // to do
             // How can we retrieve a balance where a user is registered with two merchants?
         } else {
-            return "Parameter not found in the database."
+            return "Parameter not found in the database.";
         }
 
         if (balance.contains(number)) {
