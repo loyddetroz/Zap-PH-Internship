@@ -1,23 +1,28 @@
 import java.io.*;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 public class DataChecker2 {
 
     public static void main(String[] args) {
         DataChecker2 dataChecker2 = new DataChecker2();
-        System.out.println(getBalance("639000000009", "100008", "Angus_Steakhouse"));
+        System.out.println(getBalance("639000000010", "100009", "Angus_Steakhouse"));
     }
 
 	public static String getBalance(String number, String pin, String merchantName){
         ArrayList users = readFile("data/users");
         ArrayList merchants = readFile("data/merchants");
         ArrayList balance = readFile("data/balance");
-        String merchantCode = merchants.get(merchants.indexOf(merchantName)-1).toString();
-
         merchantName = merchantName.replace("_", " ");
+        String merchantCode = merchants.get(merchants.indexOf(merchantName)-1).toString();
 
         if (users.contains(number) && users.get(users.indexOf(number)+1).toString().equals(pin) && merchants.contains(merchantName) && balance.contains(number) && balance.contains(merchantCode)) {
             // to do
             // How can we retrieve a balance where a user is registered with two merchants?
+            for (int i = 0; i < balance.size(); i++) {
+                if (balance.get(i) == number && balance.get(i+1) == merchantCode) {
+                    return balance.get(i+2).toString();
+                }
+            }
         } else {
             return "Parameter not found in the database.";
         }
