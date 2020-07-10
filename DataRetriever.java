@@ -4,7 +4,9 @@ public class DataRetriever {
 
     public static void main(String[] args) {
 //        System.out.println(getBalance("639000000010", "100009", "Angus_Steakhouse"));
-        System.out.println(listBranches("Gleeful Lemon"));
+        System.out.println(listBranches("Angus_Steakhouse"));
+        System.out.println(getAddressBranch("Angus_Steakhouse_Pasig"));
+        System.out.println(getOpeningHours("Angus_Steakhouse_Pasig"));
     }
 
 	public static String getBalance(String number, String pin, String merchantName){
@@ -90,7 +92,7 @@ public class DataRetriever {
     public static String listBranches(String merchantName) {
         ArrayList branches = readFile("data/branches");
         ArrayList merchants = readFile("data/merchants");
-        merchantName = merchantName.replace("_", "");
+        merchantName = merchantName.replace("_", " ");
         String merchantCode = "";
         String branchList = "";
 
@@ -116,6 +118,60 @@ public class DataRetriever {
             return branchList;
         }
 
+    }
+
+    public static String getAddressBranch(String merchantName) {
+        ArrayList branches = readFile("data/branches");
+        ArrayList merchants = readFile("data/merchants");
+        merchantName = merchantName.replace("_", " ");
+        String branchName = merchantName.replaceAll("(\\s)([A-Za-z]*$)", " - $2");
+        merchantName = merchantName.replaceAll("\\s[A-Za-z]*$", "");
+        String merchantCode = "";
+
+        if (merchants.contains(merchantName)) {
+            merchantCode = merchants.get(merchants.indexOf(merchantName)-1).toString();
+        } else {
+            return "Invalid merchant name.";
+        }
+
+        if (branches.contains(merchantCode)) {
+            for (int i = 0; i < branches.size(); i++) {
+                if (branches.get(i).toString().contains(branchName)) {
+                    return branches.get(i+1).toString();
+                }
+            }
+        } else {
+            return "Invalid merchant name.";
+        }
+
+        return "No branch was found";
+    }
+
+    public static String getOpeningHours(String merchantName) {
+        ArrayList branches = readFile("data/branches");
+        ArrayList merchants = readFile("data/merchants");
+        merchantName = merchantName.replace("_", " ");
+        String branchName = merchantName.replaceAll("(\\s)([A-Za-z]*$)", " - $2");
+        merchantName = merchantName.replaceAll("\\s[A-Za-z]*$", "");
+        String merchantCode = "";
+
+        if (merchants.contains(merchantName)) {
+            merchantCode = merchants.get(merchants.indexOf(merchantName)-1).toString();
+        } else {
+            return "Invalid merchant name.";
+        }
+
+        if (branches.contains(merchantCode)) {
+            for (int i = 0; i < branches.size(); i++) {
+                if (branches.get(i).toString().contains(branchName)) {
+                    return branches.get(i+2).toString() + " " + branches.get(i+3).toString();
+                }
+            }
+        } else {
+            return "Invalid merchant name.";
+        }
+
+        return "No branch was found";
     }
 
 	public static ArrayList<String> readFile(String path) {
