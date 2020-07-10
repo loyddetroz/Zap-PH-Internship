@@ -38,16 +38,6 @@ public class CommandList {
         return keys;
     }
     
-    public static int getIndex(String command) {
-    	int i = 0;
-    	for (int j = 0; j < keys.length; j++) {
-            if (commands[j] == command) {
-            	i = j;
-            }
-        }
-    	return i;
-    }
-    
     public static String printCommandResponse(String command) {
         Hashtable<String, String> hashtable = new Hashtable<>();
         initializeCommands();
