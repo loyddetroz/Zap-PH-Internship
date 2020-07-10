@@ -25,14 +25,14 @@ public class State2 extends State {
         	if (modifiedEntries.length == m) {
                 Main.setData(modifiedEntries);
                 resultState.setNextState(3);
-                resultState.setCommand(input);
+                resultState.setCommand(entries[0]);
                 resultState.setNextMessage("Confirming request to " + input + ".");
             } else if (modifiedEntries.length < m){
-                resultState.setNextState(2);
+                resultState.setNextState(0);
                 resultState.setCommand(entries[0]);
                 resultState.setNextMessage("You lack a field kindly re-enter the requested information. ");
             } else {
-                resultState.setNextState(2);
+                resultState.setNextState(0);
                 resultState.setCommand(entries[0]);
                 resultState.setNextMessage("Invalid input. Please try again.");
             }
