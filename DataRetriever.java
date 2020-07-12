@@ -1,12 +1,72 @@
 import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 public class DataRetriever {
 
+	private Socket          socket   = null; 
+    private ServerSocket    server   = null; 
+    private DataInputStream in       =  null;
+    private DataOutputStream output     = null; 
+	
+ // constructor with port 
+    public DataRetriever(int port) 
+    { 
+        // starts server and waits for a connection 
+        try
+        { 
+            server = new ServerSocket(port); 
+            System.out.println("Server started"); 
+  
+            System.out.println("Waiting for a client ..."); 
+  
+            socket = server.accept(); 
+            System.out.println("Client accepted"); 
+  
+            // takes input from the client socket 
+            in = new DataInputStream( 
+                new BufferedInputStream(socket.getInputStream())); 
+            
+            // sends output to the socket 
+            output = new DataOutputStream(socket.getOutputStream()); 
+  
+            String line = "";
+            String line2 = "";
+  
+            // reads message from client until "Over" is sent 
+            while (!line.equals("Over")) 
+            { 
+                try
+                { 
+                    line = in.readUTF();
+                    System.out.println(line);
+                    String[] info = line.split(" ");
+                    //System.out.println(getBalance(info[0], info[1], info[2]));
+                    line2 = getBalance(info[0], info[1], info[2]);
+                    output.writeUTF(line2);
+                    line = "Over";
+  
+                } 
+                catch(IOException i) 
+                { 
+                    System.out.println(i); 
+                } 
+            } 
+            System.out.println("Closing connection"); 
+  
+            //close connection 
+            socket.close(); 
+            in.close();
+            output.close();
+        } 
+        catch(IOException i) 
+        { 
+            System.out.println(i); 
+        } 
+    } 
+	
     public static void main(String[] args) {
-//        System.out.println(getBalance("639000000010", "100009", "Angus_Steakhouse"));
-        System.out.println(listBranches("Angus_Steakhouse"));
-        System.out.println(getAddressBranch("Angus_Steakhouse_Pasig"));
-        System.out.println(getOpeningHours("Angus_Steakhouse_Pasig"));
+	    DataRetriever server = new DataRetriever(5000);
     }
 
 	public static String getBalance(String number, String pin, String merchantName){
