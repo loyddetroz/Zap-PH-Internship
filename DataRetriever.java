@@ -4,7 +4,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 public class DataRetriever {
 
-	private Socket          socket   = null; 
+    private String[] commandsD = CommandList.getCommands();
+    private Socket          socket   = null; 
     private ServerSocket    server   = null; 
     private DataInputStream in       =  null;
     private DataOutputStream output     = null; 
@@ -19,10 +20,9 @@ public class DataRetriever {
             System.out.println("Server started"); 
   
             System.out.println("Waiting for a client ..."); 
-  
+            while (true) {
             socket = server.accept(); 
             System.out.println("Client accepted"); 
-  
             // takes input from the client socket 
             in = new DataInputStream( 
                 new BufferedInputStream(socket.getInputStream())); 
@@ -32,33 +32,78 @@ public class DataRetriever {
   
             String line = "";
             String line2 = "";
-  
+            String line3 = "";
             // reads message from client until "Over" is sent 
             while (!line.equals("Over")) 
             { 
                 try
-                { 
+                {
+                    line3 = in.readUTF();
                     line = in.readUTF();
-                    System.out.println(line);
                     String[] info = line.split(" ");
-                    //System.out.println(getBalance(info[0], info[1], info[2]));
-                    line2 = getBalance(info[0], info[1], info[2]);
-                    output.writeUTF(line2);
-                    line = "Over";
-  
+                    if(line3.equalsIgnoreCase(commandsD[0])) {
+	                    line2 = getBalance(info[0], info[1], info[2]);
+	                    output.writeUTF(line2);
+	                    line = "Over";
+                    }
+                    else if(line3.equalsIgnoreCase(commandsD[1])) {
+                        line2 = getCoupons(info[0], info[1], info[2]);
+                        output.writeUTF(line2);
+                        line = "Over";
+                    }
+                    else if(line3.equalsIgnoreCase(commandsD[2])) {
+                        line2 = getOpenBranches();
+                        output.writeUTF(line2);
+                        line = "Over";
+                    }
+                    else if(line3.equalsIgnoreCase(commandsD[3])) {
+                        line2 = getRank(info[0], info[1], info[2]);
+                        output.writeUTF(line2);
+                        line = "Over";
+                    }
+                    else if(line3.equalsIgnoreCase(commandsD[4])) {
+                        line2 = getPromotions();
+                        output.writeUTF(line2);
+                        line = "Over";
+                    }
+                    else if(line3.equalsIgnoreCase(commandsD[5])) {
+                        line2 = voidTX();
+                        output.writeUTF(line2);
+                        line = "Over";
+                    }
+                    else if(line3.equalsIgnoreCase(commandsD[6])) {
+                        line2 = deactivate();
+                        output.writeUTF(line2);
+                        line = "Over";
+                    }
+                    else if(line3.equalsIgnoreCase(commandsD[7])) {
+                        line2 = listBranches(info[0]);
+                        output.writeUTF(line2);
+                        line = "Over";
+                    }
+                    else if(line3.equalsIgnoreCase(commandsD[8])) {
+                        line2 = getAddressBranch(info[0]);
+                        output.writeUTF(line2);
+                        line = "Over";
+                    }
+                    else if(line3.equalsIgnoreCase(commandsD[9])) {
+                        line2 = getOpeningHours(info[0]);
+                        output.writeUTF(line2);
+                        line = "Over";
+                    }
                 } 
                 catch(IOException i) 
                 { 
                     System.out.println(i); 
                 } 
-            } 
-            System.out.println("Closing connection"); 
-  
-            //close connection 
-            socket.close(); 
-            in.close();
-            output.close();
-        } 
+            }
+            // close connection 
+            //System.out.println("Closing Connection");
+            //socket.close(); 
+            //in.close();
+            //output.close();
+            }
+            }
         catch(IOException i) 
         { 
             System.out.println(i); 
