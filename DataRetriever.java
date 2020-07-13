@@ -2,13 +2,13 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-public class DataRetriever {
 
+public class DataRetriever {
     private String[] commandsD = CommandList.getCommands();
-    private Socket          socket   = null; 
-    private ServerSocket    server   = null; 
-    private DataInputStream in       =  null;
-    private DataOutputStream output     = null; 
+    private Socket socket = null;
+    private ServerSocket server = null;
+    private DataInputStream in = null;
+    private DataOutputStream output = null;
 	
  // constructor with port 
     public DataRetriever(int port) 
@@ -19,7 +19,7 @@ public class DataRetriever {
             server = new ServerSocket(port); 
             System.out.println("Server started"); 
   
-            System.out.println("Waiting for a client ..."); 
+            System.out.println("Waiting for a client ...");
             while (true) {
             socket = server.accept(); 
             System.out.println("Client accepted"); 
@@ -30,66 +30,66 @@ public class DataRetriever {
             // sends output to the socket 
             output = new DataOutputStream(socket.getOutputStream()); 
   
-            String line = "";
-            String line2 = "";
-            String line3 = "";
+            String dataFromClient = "";
+            String dataToClient = "";
+            String commandFromClient = "";
             // reads message from client until "Over" is sent 
-            while (!line.equals("Over")) 
+            while (!dataFromClient.equals("Over"))
             { 
                 try
                 {
-                    line3 = in.readUTF();
-                    line = in.readUTF();
-                    String[] info = line.split(" ");
-                    if(line3.equalsIgnoreCase(commandsD[0])) {
-	                    line2 = getBalance(info[0], info[1], info[2]);
-	                    output.writeUTF(line2);
-	                    line = "Over";
+                    commandFromClient = in.readUTF();
+                    dataFromClient = in.readUTF();
+                    String[] info = dataFromClient.split(" ");
+                    if(commandFromClient.equalsIgnoreCase(commandsD[0])) {
+	                    dataToClient = getBalance(info[0], info[1], info[2]);
+	                    output.writeUTF(dataToClient);
+	                    dataFromClient = "Over";
                     }
-                    else if(line3.equalsIgnoreCase(commandsD[1])) {
-                        line2 = getCoupons(info[0], info[1], info[2]);
-                        output.writeUTF(line2);
-                        line = "Over";
+                    else if(commandFromClient.equalsIgnoreCase(commandsD[1])) {
+                        dataToClient = getCoupons(info[0], info[1], info[2]);
+                        output.writeUTF(dataToClient);
+                        dataFromClient = "Over";
                     }
-                    else if(line3.equalsIgnoreCase(commandsD[2])) {
-                        line2 = getOpenBranches();
-                        output.writeUTF(line2);
-                        line = "Over";
+                    else if(commandFromClient.equalsIgnoreCase(commandsD[2])) {
+                        dataToClient = getOpenBranches();
+                        output.writeUTF(dataToClient);
+                        dataFromClient = "Over";
                     }
-                    else if(line3.equalsIgnoreCase(commandsD[3])) {
-                        line2 = getRank(info[0], info[1], info[2]);
-                        output.writeUTF(line2);
-                        line = "Over";
+                    else if(commandFromClient.equalsIgnoreCase(commandsD[3])) {
+                        dataToClient = getRank(info[0], info[1], info[2]);
+                        output.writeUTF(dataToClient);
+                        dataFromClient = "Over";
                     }
-                    else if(line3.equalsIgnoreCase(commandsD[4])) {
-                        line2 = getPromotions();
-                        output.writeUTF(line2);
-                        line = "Over";
+                    else if(commandFromClient.equalsIgnoreCase(commandsD[4])) {
+                        dataToClient = getPromotions();
+                        output.writeUTF(dataToClient);
+                        dataFromClient = "Over";
                     }
-                    else if(line3.equalsIgnoreCase(commandsD[5])) {
-                        line2 = voidTX();
-                        output.writeUTF(line2);
-                        line = "Over";
+                    else if(commandFromClient.equalsIgnoreCase(commandsD[5])) {
+                        dataToClient = voidTX();
+                        output.writeUTF(dataToClient);
+                        dataFromClient = "Over";
                     }
-                    else if(line3.equalsIgnoreCase(commandsD[6])) {
-                        line2 = deactivate();
-                        output.writeUTF(line2);
-                        line = "Over";
+                    else if(commandFromClient.equalsIgnoreCase(commandsD[6])) {
+                        dataToClient = deactivate();
+                        output.writeUTF(dataToClient);
+                        dataFromClient = "Over";
                     }
-                    else if(line3.equalsIgnoreCase(commandsD[7])) {
-                        line2 = listBranches(info[0]);
-                        output.writeUTF(line2);
-                        line = "Over";
+                    else if(commandFromClient.equalsIgnoreCase(commandsD[7])) {
+                        dataToClient = listBranches(info[0]);
+                        output.writeUTF(dataToClient);
+                        dataFromClient = "Over";
                     }
-                    else if(line3.equalsIgnoreCase(commandsD[8])) {
-                        line2 = getAddressBranch(info[0]);
-                        output.writeUTF(line2);
-                        line = "Over";
+                    else if(commandFromClient.equalsIgnoreCase(commandsD[8])) {
+                        dataToClient = getAddressBranch(info[0]);
+                        output.writeUTF(dataToClient);
+                        dataFromClient = "Over";
                     }
-                    else if(line3.equalsIgnoreCase(commandsD[9])) {
-                        line2 = getOpeningHours(info[0]);
-                        output.writeUTF(line2);
-                        line = "Over";
+                    else if(commandFromClient.equalsIgnoreCase(commandsD[9])) {
+                        dataToClient = getOpeningHours(info[0]);
+                        output.writeUTF(dataToClient);
+                        dataFromClient = "Over";
                     }
                 } 
                 catch(IOException i) 
@@ -97,9 +97,9 @@ public class DataRetriever {
                     System.out.println(i); 
                 } 
             }
-            // close connection 
+            // close connection
             //System.out.println("Closing Connection");
-            //socket.close(); 
+            //socket.close();
             //in.close();
             //output.close();
             }

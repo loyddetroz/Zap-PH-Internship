@@ -7,15 +7,15 @@ import java.net.UnknownHostException;
 
 public class ChatClient {
 
-    public static String getNumber() {
-		return number;
+    public static String getString() {
+		return string;
 	}
 
 	public static String[] data;
-    private Socket socket            = null; 
-    private static DataInputStream  input   = null; 
-    private DataOutputStream out     = null;
-    private static String number = "";
+    private Socket socket = null;
+    private static DataInputStream input = null;
+    private DataOutputStream out = null;
+    private static String string = "";
     
  // constructor to put ip address and port 
     public ChatClient(String address, int port) 
@@ -44,24 +44,24 @@ public class ChatClient {
   
         // string to read message from input 
         String[] data = Main.getData();
-        String com = Main.getCurrentCommand();
+        String command = Main.getCurrentCommand();
         StringBuilder builder = new StringBuilder();
         for(String s : data) {
             builder.append(s + " ");
         }
-        String line = builder.toString();
-        String line2 = "";
+        String dataToClient = builder.toString();
+        String responseFromServer = "";
         // keep reading until "Over" is input 
-        while (!line.equals("Over")) 
+        while (!dataToClient.equals("Over"))
         { 
             try
             {
-            	out.writeUTF(com);
-            	out.writeUTF(line);
-            	line2 = input.readUTF();
-//            	System.out.println(line2);
-            	number = line2;
-            	line = "Over";
+            	out.writeUTF(command);
+            	out.writeUTF(dataToClient);
+            	responseFromServer = input.readUTF();
+//            	System.out.println(responseFromServer);
+            	string = responseFromServer;
+            	dataToClient = "Over";
             }  
             catch(IOException i) 
             { 
