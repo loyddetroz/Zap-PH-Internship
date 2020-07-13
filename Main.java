@@ -14,6 +14,10 @@ public class Main {
     public static void setData(String[] data) {
         Main.data = data;
     }
+    
+    public static String getCurrentCommand() {
+		return currentCommand;
+	}
 
     public static void main(String[] args) {
         states[0] = new State1();
