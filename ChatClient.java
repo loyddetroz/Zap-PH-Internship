@@ -24,7 +24,7 @@ public class ChatClient {
         try
         { 
             socket = new Socket(address, port); 
-            System.out.println("Connected"); 
+//            System.out.println("Connected");
   
             // takes input from server
             input = new DataInputStream( 
@@ -59,7 +59,7 @@ public class ChatClient {
             	out.writeUTF(com);
             	out.writeUTF(line);
             	line2 = input.readUTF();
-            	System.out.println(line2);
+//            	System.out.println(line2);
             	number = line2;
             	line = "Over";
             }  
