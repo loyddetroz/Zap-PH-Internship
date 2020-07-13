@@ -44,6 +44,7 @@ public class ChatClient {
   
         // string to read message from input 
         String[] data = Main.getData();
+        String com = Main.getCurrentCommand();
         StringBuilder builder = new StringBuilder();
         for(String s : data) {
             builder.append(s + " ");
@@ -54,13 +55,14 @@ public class ChatClient {
         while (!line.equals("Over")) 
         { 
             try
-            { 
+            {
+            	out.writeUTF(com);
             	out.writeUTF(line);
             	line2 = input.readUTF();
             	System.out.println(line2);
             	number = line2;
             	line = "Over";
-            } 
+            }  
             catch(IOException i) 
             { 
                 System.out.println(i); 
