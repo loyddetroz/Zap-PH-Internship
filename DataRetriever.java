@@ -67,6 +67,7 @@ public class DataRetriever {
 	
     public static void main(String[] args) {
 	    DataRetriever server = new DataRetriever(5000);
+
     }
 
 	public static String getBalance(String number, String pin, String merchantName){
@@ -74,11 +75,11 @@ public class DataRetriever {
         ArrayList merchants = readFile("data/merchants");
         ArrayList balance = readFile("data/balance");
         merchantName = merchantName.replace("_", " ");
-        String merchantCode = merchants.get(merchants.indexOf(merchantName)-1).toString();
 
         if (users.contains(number)) {
             if (users.get(users.indexOf(number)+1).toString().equals(pin) ){
                 if (merchants.contains(merchantName)) {
+                    String merchantCode = merchants.get(merchants.indexOf(merchantName)-1).toString();
                     if (balance.contains(number) && balance.contains(merchantCode)) {
                         for (int i = 0; i < balance.size(); i++) {
                             if (balance.get(i).toString().equals(number) && balance.get(i+1).toString().equals(merchantCode)) {
@@ -119,11 +120,21 @@ public class DataRetriever {
         ArrayList merchants = readFile("data/merchants");
         ArrayList userRanks = readFile("data/user_ranks");
         ArrayList ranks = readFile("data/ranks");
+        merchantName = merchantName.replace("_", " ");
 
         if (users.contains(number)) {
             if (users.get(users.indexOf(number)+1).toString().equals(pin) ){
                 if (merchants.contains(merchantName)) {
-
+                    String merchantCode = merchants.get(merchants.indexOf(merchantName)-1).toString();
+                    if (userRanks.contains(number) && userRanks.contains(merchantCode)) {
+                        for (int i = 0; i < userRanks.size(); i++) {
+                            if (userRanks.get(i).toString().equals(number) && userRanks.get(i+2).toString().equals(merchantCode)) {
+                                return userRanks.get(i+1).toString();
+                            }
+                        }
+                    } else {
+                        return "The number or merchant is not in the database.";
+                    }
                 } else {
                     return "Invalid merchant name.";
                 }
