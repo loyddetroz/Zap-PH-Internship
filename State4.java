@@ -15,7 +15,7 @@ public class State4 extends State {
             resultState.setCommand(command);
             ChatClient client = new ChatClient("localhost", 5000); 
             String num = ChatClient.getNumber();
-            resultState.setNextMessage(command + " " + num + "\n"  + "Anything else I can help you with?");
+            resultState.setNextMessage(num + "\n"  + "Anything else I can help you with?");
         } 
         else if (input.toLowerCase().contains("no")) {
         	resultState.setNextState(2);
