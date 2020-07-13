@@ -128,7 +128,7 @@ public class DataRetriever {
                     if (balance.contains(number) && balance.contains(merchantCode)) {
                         for (int i = 0; i < balance.size(); i++) {
                             if (balance.get(i).toString().equals(number) && balance.get(i+1).toString().equals(merchantCode)) {
-                                return balance.get(i+2).toString();
+                                return "Your balance is " + balance.get(i+2).toString() + ".";
                             }
                         }
                     } else {
@@ -174,7 +174,7 @@ public class DataRetriever {
                     if (userRanks.contains(number) && userRanks.contains(merchantCode)) {
                         for (int i = 0; i < userRanks.size(); i++) {
                             if (userRanks.get(i).toString().equals(number) && userRanks.get(i+2).toString().equals(merchantCode)) {
-                                return userRanks.get(i+1).toString();
+                                return "Your rank is "+ userRanks.get(i+1).toString();
                             }
                         }
                     } else {
@@ -247,7 +247,7 @@ public class DataRetriever {
         if (merchants.contains(merchantName)) {
             merchantCode = merchants.get(merchants.indexOf(merchantName)-1).toString();
         } else {
-            return "Invalid merchant name.";
+            return "Invalid branch name.";
         }
 
         if (branches.contains(merchantCode)) {
@@ -274,13 +274,13 @@ public class DataRetriever {
         if (merchants.contains(merchantName)) {
             merchantCode = merchants.get(merchants.indexOf(merchantName)-1).toString();
         } else {
-            return "Invalid merchant name.";
+            return "Invalid branch name.";
         }
 
         if (branches.contains(merchantCode)) {
             for (int i = 0; i < branches.size(); i++) {
                 if (branches.get(i).toString().contains(branchName)) {
-                    return branches.get(i+2).toString() + " " + branches.get(i+3).toString();
+                    return branchName + " is open on " + branches.get(i+2).toString() + ".";
                 }
             }
         } else {
