@@ -42,7 +42,7 @@ public class State2 extends State {
             resultState.setCommand(input);
             resultState.setNextMessage("I would like to confirm if you wish to " + input + ".");
         } else if (input.toLowerCase().contains("yes") && Arrays.asList(commands).contains(command)) {
-            resultState.setNextState(2);
+            resultState.setNextState(3);
             resultState.setCommand(command.toLowerCase());
             resultState.setNextMessage(CommandList.printCommandResponse(command));
         }
