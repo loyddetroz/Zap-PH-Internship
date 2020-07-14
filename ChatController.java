@@ -12,6 +12,7 @@ public class ChatController implements ActionListener {
     public static String[] data;
     JPanel messagePanel;
     JTextField messageArea;
+    JTextArea chatDisplayArea;
     JButton sendButton;
     String input;
 
@@ -28,9 +29,10 @@ public class ChatController implements ActionListener {
         messagePanel = new JPanel();
         messagePanel.setPreferredSize(new Dimension(100, 50));
 
-        JTextArea chatDisplayArea = new JTextArea();
+        chatDisplayArea = new JTextArea();
         chatDisplayArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
         panel.add(chatDisplayArea);
+        chatDisplayArea.setLineWrap(true);
 
         messageArea = new JTextField(50);
         messageArea.setSize(new Dimension(200, 50));
@@ -47,7 +49,7 @@ public class ChatController implements ActionListener {
         frame.setTitle("Zap Chat Bot");
         frame.getRootPane().setDefaultButton(sendButton);
         frame.pack();
-        frame.setSize(700, 500);
+        frame.setSize(750, 500);
         frame.setVisible(true);
     }
 
@@ -55,7 +57,7 @@ public class ChatController implements ActionListener {
 
     public void run(String input) {
         if (input != "" && isFirstTime) {
-            System.out.println("How can I help you?");
+            chatDisplayArea.setText("Client: " + messageArea.getText() + "\nServer: " + "How can I help you?");
             isFirstTime = false;
         } else {
             State state = states[currentState];
@@ -65,7 +67,7 @@ public class ChatController implements ActionListener {
             currentCommand = resultState.getCommand();
             currentState = resultState.getNextState();
 //        System.out.println(currentState + " " +  currentCommand + " " + output);
-            System.out.println(output);
+            chatDisplayArea.setText("Client: " + messageArea.getText() + "\nServer: " + output);
         }
     }
 
