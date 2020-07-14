@@ -1,4 +1,7 @@
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,10 +14,9 @@ public class ChatController implements ActionListener {
     private static State[] states = new State[4];
     public static String[] data;
     JPanel messagePanel;
-    JTextField messageArea;
-    JTextArea chatDisplayArea;
+    JTextField userInput;
+    JTextArea display;
     JButton sendButton;
-    String input;
 
     public ChatController() {
         states[0] = new State1();
@@ -29,14 +31,14 @@ public class ChatController implements ActionListener {
         messagePanel = new JPanel();
         messagePanel.setPreferredSize(new Dimension(100, 50));
 
-        chatDisplayArea = new JTextArea();
-        chatDisplayArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-        panel.add(chatDisplayArea);
-        chatDisplayArea.setLineWrap(true);
+        display = new JTextArea();
+        display.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        panel.add(new JScrollPane(display));
+        display.setLineWrap(true);
 
-        messageArea = new JTextField(50);
-        messageArea.setSize(new Dimension(200, 50));
-        messagePanel.add(messageArea);
+        userInput = new JTextField(50);
+        userInput.setSize(new Dimension(200, 50));
+        messagePanel.add(userInput);
 
         sendButton = new JButton("Send");
         messagePanel.add(sendButton);
@@ -56,8 +58,13 @@ public class ChatController implements ActionListener {
     private boolean isFirstTime = true;
 
     public void run(String input) {
+
         if (input != "" && isFirstTime) {
-            chatDisplayArea.setText("Client: " + messageArea.getText() + "\nServer: " + "How can I help you?");
+            display.append("User: " + input + "\n");
+            display.append("Zap: " + "How can I help you?" + "\n");
+//            display.setBackground(Color.white);
+            display.append("\n");
+//            display.setText("Client: " + userInput.getText() + "\nServer: " + "How can I help you?");
             isFirstTime = false;
         } else {
             State state = states[currentState];
@@ -67,13 +74,17 @@ public class ChatController implements ActionListener {
             currentCommand = resultState.getCommand();
             currentState = resultState.getNextState();
 //        System.out.println(currentState + " " +  currentCommand + " " + output);
-            chatDisplayArea.setText("Client: " + messageArea.getText() + "\nServer: " + output);
+//            display.setText("Client: " + userInput.getText() + "\nServer: " + output);
+            display.append("User: " + input + "\n");
+            display.append("Zap: " + output + "\n");
+            display.append("\n");
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        run(messageArea.getText());
+        run(userInput.getText());
+        userInput.setText("");
     }
 
     public static String[] getData() {
