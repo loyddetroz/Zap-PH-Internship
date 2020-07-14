@@ -15,7 +15,7 @@ public class State3 extends State {
             resultState.setNextState(2);
             resultState.setCommand(input.toLowerCase());
             resultState.setNextMessage(CommandList.printCommandResponse(input));
-        } else if (Arrays.asList(keys).contains(entries[0].toUpperCase()) && modifiedEntries.length == n) {
+        } else if (Arrays.asList(keys).contains(entries[0].toUpperCase())) { //&& modifiedEntries.length == n
             for (int i = 0; i < keys.length; i++) {
                 if (entries[0].toUpperCase().equals(keys[i])) {
                     entries[0] = commands[i];

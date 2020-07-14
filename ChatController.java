@@ -32,7 +32,6 @@ public class ChatController implements ActionListener {
         messagePanel.setPreferredSize(new Dimension(100, 50));
 
         display = new JTextArea();
-        display.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         panel.add(new JScrollPane(display));
         display.setLineWrap(true);
 
@@ -74,7 +73,7 @@ public class ChatController implements ActionListener {
             currentCommand = resultState.getCommand();
             currentState = resultState.getNextState();
 //        System.out.println(currentState + " " +  currentCommand + " " + output);
-//            display.setText("Client: " + userInput.getText() + "\nServer: " + output);
+//////            display.setText("Client: " + userInput.getText() + "\nServer: " + output);
             display.append("User: " + input + "\n");
             display.append("Zap: " + output + "\n");
             display.append("\n");

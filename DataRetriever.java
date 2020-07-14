@@ -112,7 +112,6 @@ public class DataRetriever {
 	
     public static void main(String[] args) {
 	    DataRetriever server = new DataRetriever(5000);
-
     }
 
 	public static String getBalance(String number, String pin, String merchantName){

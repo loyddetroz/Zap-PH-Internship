@@ -13,7 +13,7 @@ public class State4 extends State {
         if (input.toLowerCase().contains("yes")) {
             resultState.setNextState(0);
             resultState.setCommand(command);
-            ChatClient client = new ChatClient("localhost", 5000); 
+            ChatClient client = new ChatClient("localhost", 5000);
             String num = ChatClient.getString();
             resultState.setNextMessage(num + "\n"  + "Anything else I can help you with?");
         } 
