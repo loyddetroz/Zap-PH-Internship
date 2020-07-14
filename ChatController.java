@@ -16,6 +16,11 @@ public class ChatController implements ActionListener {
     String input;
 
     public ChatController() {
+        states[0] = new State1();
+        states[1] = new State2();
+        states[2] = new State3();
+        states[3] = new State4();
+
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         panel.setLayout(new GridLayout(0, 1));
@@ -40,43 +45,33 @@ public class ChatController implements ActionListener {
         frame.add(messagePanel, BorderLayout.SOUTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Zap Chat Bot");
+        frame.getRootPane().setDefaultButton(sendButton);
         frame.pack();
         frame.setSize(700, 500);
         frame.setVisible(true);
     }
 
-    public void run() {
-        states[0] = new State1();
-        states[1] = new State2();
-        states[2] = new State3();
-        states[3] = new State4();
+    private boolean isFirstTime = true;
 
-        if (scanner.nextLine() != "") {
+    public void run(String input) {
+        if (input != "" && isFirstTime) {
             System.out.println("How can I help you?");
-        }
-
-        while (true) {
+            isFirstTime = false;
+        } else {
             State state = states[currentState];
-            System.out.println(input);
-
-            if (input.toLowerCase().contains("bye")) {
-                break;
-            }
-
             ResultState resultState = state.process(input, currentCommand);
 
             String output = resultState.getNextMessage();
             currentCommand = resultState.getCommand();
             currentState = resultState.getNextState();
-//            System.out.println(currentState + " " +  currentCommand + " " + output);
+//        System.out.println(currentState + " " +  currentCommand + " " + output);
             System.out.println(output);
         }
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        input = messageArea.getText();
+        run(messageArea.getText());
     }
 
     public static String[] getData() {
