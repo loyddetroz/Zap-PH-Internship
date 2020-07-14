@@ -35,7 +35,7 @@ public class DataRetriever {
             String commandFromClient = "";
             // reads message from client until "Over" is sent 
             while (!dataFromClient.equals("Over"))
-            { 
+            {
                 try
                 {
                     commandFromClient = in.readUTF();

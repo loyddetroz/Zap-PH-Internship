@@ -43,8 +43,8 @@ public class ChatClient {
         } 
   
         // string to read message from input 
-        String[] data = Main.getData();
-        String command = Main.getCurrentCommand();
+        String[] data = ChatController.getData();
+        String command = ChatController.getCurrentCommand();
         StringBuilder builder = new StringBuilder();
         for(String s : data) {
             builder.append(s + " ");
@@ -81,5 +81,6 @@ public class ChatClient {
             System.out.println(i); 
         } 
     }
+
 
 }
