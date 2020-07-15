@@ -1,0 +1,16 @@
+User: sa
+Zap: How can I help you?
+
+User: dsa
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+

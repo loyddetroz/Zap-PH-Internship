@@ -5,6 +5,7 @@ import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.Scanner;
 
 public class ChatController implements ActionListener {
@@ -52,6 +53,22 @@ public class ChatController implements ActionListener {
         frame.pack();
         frame.setSize(750, 500);
         frame.setVisible(true);
+
+        readFile();
+
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                saveFile();
+                if (JOptionPane.showConfirmDialog(frame,
+                        "Are you sure you want to close this window?", "Close Window?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                    System.exit(0);
+                }
+            }
+        });
+
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
     private boolean isFirstTime = true;
@@ -72,11 +89,48 @@ public class ChatController implements ActionListener {
             String output = resultState.getNextMessage();
             currentCommand = resultState.getCommand();
             currentState = resultState.getNextState();
-//        System.out.println(currentState + " " +  currentCommand + " " + output);
-//////            display.setText("Client: " + userInput.getText() + "\nServer: " + output);
             display.append("User: " + input + "\n");
             display.append("Zap: " + output + "\n");
             display.append("\n");
+        }
+    }
+
+    private String storeAllString="";
+    private void readFile(){
+        try{
+            FileReader read = new FileReader("save/ "+ Login.getPhoneNumber().getText() + ".txt");
+
+            if (read != null) {
+                Scanner scan = new Scanner(read);
+                while(scan.hasNextLine()){
+                    String temp = scan.nextLine()+"\n";
+                    storeAllString = storeAllString + temp;
+                }
+                display.setText(storeAllString);
+            }
+        }
+        catch (Exception exception)
+        {
+            exception.printStackTrace();
+        }
+    }
+
+    public void saveFile() {
+        File writeFile;
+        Writer writer = null;
+
+        writeFile = new File("save/ "+ Login.getPhoneNumber().getText() + ".txt");
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream(writeFile), "utf-8"));
+            display.write(writer);
+        } catch (IOException ex) {
+            // report
+        } finally {
+            try {
+                writer.close();
+            } catch (Exception ex) {/*ignore*/
+            }
         }
     }
 
