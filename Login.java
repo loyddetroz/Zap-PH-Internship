@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 public class Login {
 
 	private JFrame frame;
-	private JTextField phoneNumber;
+	private static JTextField phoneNumber;
 	private JPasswordField pin;
 
 	/**
@@ -117,6 +117,10 @@ public class Login {
 
         return listOfLines;
     }
+	
+	public static JTextField getPhoneNumber() {
+		return phoneNumber;
+	}
 	
 	public static String getCredentials(String number, String pin) {
         ArrayList users = readFile("data/users");
