@@ -138,6 +138,7 @@ public class ChatController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         run(userInput.getText());
         userInput.setText("");
+        saveFile();
     }
 
     public static String[] getData() {
