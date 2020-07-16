@@ -3,7 +3,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class DataRetriever {
+public class DataRetrieverServer {
     private String[] commandsD = CommandList.getCommands();
     private Socket socket = null;
     private ServerSocket server = null;
@@ -11,7 +11,7 @@ public class DataRetriever {
     private DataOutputStream output = null;
 	
  // constructor with port 
-    public DataRetriever(int port) 
+    public DataRetrieverServer(int port)
     { 
         // starts server and waits for a connection 
         try
@@ -22,7 +22,7 @@ public class DataRetriever {
             System.out.println("Waiting for a client ...");
             while (true) {
             socket = server.accept(); 
-            System.out.println("Client accepted"); 
+            System.out.println("ChatClient accepted");
             // takes input from the client socket 
             in = new DataInputStream( 
                 new BufferedInputStream(socket.getInputStream())); 
@@ -111,7 +111,7 @@ public class DataRetriever {
     } 
 	
     public static void main(String[] args) {
-	    DataRetriever server = new DataRetriever(5000);
+	    DataRetrieverServer server = new DataRetrieverServer(5000);
     }
 
 	public static String getBalance(String number, String pin, String merchantName){

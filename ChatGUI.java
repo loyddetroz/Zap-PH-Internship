@@ -1,15 +1,12 @@
 import javax.swing.*;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultHighlighter;
-import javax.swing.text.Highlighter;
+import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Scanner;
 
-public class ChatController implements ActionListener {
-    private static Scanner scanner = new Scanner(System.in);
+public class ChatGUI implements ActionListener {
     private static String currentCommand = "";
     private static int currentState = 0;
     private static State[] states = new State[4];
@@ -19,7 +16,7 @@ public class ChatController implements ActionListener {
     JTextArea display;
     JButton sendButton;
 
-    public ChatController() {
+    public ChatGUI() {
         states[0] = new State1();
         states[1] = new State2();
         states[2] = new State3();
@@ -35,6 +32,8 @@ public class ChatController implements ActionListener {
         display = new JTextArea();
         panel.add(new JScrollPane(display));
         display.setLineWrap(true);
+        DefaultCaret caret = (DefaultCaret) display.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
         userInput = new JTextField(50);
         userInput.setSize(new Dimension(200, 50));
@@ -80,7 +79,7 @@ public class ChatController implements ActionListener {
             display.append("Zap: " + "How can I help you?" + "\n");
 //            display.setBackground(Color.white);
             display.append("\n");
-//            display.setText("Client: " + userInput.getText() + "\nServer: " + "How can I help you?");
+//            display.setText("ChatClient: " + userInput.getText() + "\nServer: " + "How can I help you?");
             isFirstTime = false;
         } else {
             State state = states[currentState];
@@ -146,7 +145,7 @@ public class ChatController implements ActionListener {
     }
 
     public static void setData(String[] data) {
-        ChatController.data = data;
+        ChatGUI.data = data;
     }
 
     public static String getCurrentCommand() {

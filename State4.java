@@ -13,8 +13,8 @@ public class State4 extends State {
         if (input.toLowerCase().contains("yes")) {
             resultState.setNextState(0);
             resultState.setCommand(command);
-            ChatClient client = new ChatClient("localhost", 5000);
-            String num = ChatClient.getString();
+            DataRetrieverClient client = new DataRetrieverClient("localhost", 5000);
+            String num = DataRetrieverClient.getString();
             resultState.setNextMessage(num + "\n"  + "Anything else I can help you with?");
         } 
         else if (input.toLowerCase().contains("no")) {
@@ -35,7 +35,7 @@ public class State4 extends State {
     		}
         	int m = CommandList.validateKeywords(entries[0], modifiedEntries);
         	if (modifiedEntries.length == m) {
-                ChatController.setData(modifiedEntries);
+                ChatServer.setData(modifiedEntries);
                 resultState.setNextState(3);
                 resultState.setCommand(entries[0]);
                 resultState.setNextMessage("Confirming request to " + input + ".");

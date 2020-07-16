@@ -14,3 +14,109 @@ list branches
 get branch address
 get opening hours of branch
 
+User: dsfsd
+Zap: How can I help you?
+
+User: hdsa
+Zap: How can I help you?
+
+User: fds
+Zap: How can I help you?
+
+User: get balance
+Zap: I would like to confirm if you wish to get balance.
+
+User: yes
+Zap: Alright, kindly enter the following BALANCE<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: BALANCE 09176780012 123456 Angus
+
+User: BALANCE 09176780012 123456 Angus
+Zap: Confirming request to BALANCE 09176780012 123456 Angus.
+
+User: BALANCE 09176780012 123456 Angus
+Zap: Confirming request to BALANCE 09176780012 123456 Angus.
+
+User: yes
+Zap: Invalid number.
+Anything else I can help you with?
+
+User: no
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+
+User: sj
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+
+User: dsf
+Zap: How can I help you?
+
+User: dsf
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+
+User: sdf
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+
+User: ds
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+
+User: fd
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+
