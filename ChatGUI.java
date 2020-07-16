@@ -17,11 +17,6 @@ public class ChatGUI implements ActionListener {
     JButton sendButton;
 
     public ChatGUI() {
-        states[0] = new State1();
-        states[1] = new State2();
-        states[2] = new State3();
-        states[3] = new State4();
-
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         panel.setLayout(new GridLayout(0, 1));
@@ -77,9 +72,8 @@ public class ChatGUI implements ActionListener {
         if (input != "" && isFirstTime) {
             display.append("User: " + input + "\n");
             display.append("Zap: " + "How can I help you?" + "\n");
-//            display.setBackground(Color.white);
+
             display.append("\n");
-//            display.setText("ChatClient: " + userInput.getText() + "\nServer: " + "How can I help you?");
             isFirstTime = false;
         } else {
             State state = states[currentState];
@@ -95,7 +89,7 @@ public class ChatGUI implements ActionListener {
     }
 
     private String storeAllString="";
-    private void readFile(){
+    public void readFile(){
         try{
             FileReader read = new FileReader("save/ "+ Login.getPhoneNumber().getText() + ".txt");
 

@@ -49,18 +49,18 @@ public class DataRetrieverClient {
         for(String s : data) {
             builder.append(s + " ");
         }
-        String dataToClient = builder.toString();
+        String dataToServer = builder.toString();
         String responseFromServer = "";
         // keep reading until "Over" is input 
-        while (!dataToClient.equals("Over"))
+        while (!dataToServer.equals("Over"))
         { 
             try
             {
             	out.writeUTF(command);
-            	out.writeUTF(dataToClient);
+            	out.writeUTF(dataToServer);
             	responseFromServer = input.readUTF();
             	string = responseFromServer;
-            	dataToClient = "Over";
+            	dataToServer = "Over";
             }  
             catch(IOException i) 
             { 

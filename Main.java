@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        ChatGUI chatController = new ChatGUI();
+        new ChatClient("localhost", 3000);
     }
 }
 
