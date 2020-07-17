@@ -96,7 +96,4 @@ public class ChatServer {
         return currentCommand;
     }
 
-    public static void setCurrentCommand(String currentCommand) {
-        ChatServer.currentCommand = currentCommand;
-    }
 }

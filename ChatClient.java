@@ -185,6 +185,7 @@ public class ChatClient implements ActionListener
                 display.append(responseFromServer);
                 display.append(botResponse);
                 display.append("\n");
+                userInput.setText("");
             }
             catch(IOException i)
             {
