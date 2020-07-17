@@ -78,7 +78,7 @@ public class Login {
 				if (Login.getCredentials(pNumber, pass).equalsIgnoreCase("success")) {
 					JOptionPane.showMessageDialog(frame, "Login Successful");
 					frame.dispose();
-					Main.main(null);
+					ChatClient.main(null);
 				}
 				else if (Login.getCredentials(pNumber, pass).equalsIgnoreCase("invalid pin")) {
 					JOptionPane.showMessageDialog(frame, "Invalid PIN");
