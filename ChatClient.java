@@ -12,7 +12,6 @@ public class ChatClient implements ActionListener
 {
     // initialize socket and input output streams 
     private Socket socket = null;
-    private DataInputStream input = null;
     private DataOutputStream out = null;
     private DataInputStream in = null;
     private String storeAllString = "";
@@ -31,9 +30,6 @@ public class ChatClient implements ActionListener
         try
         {
             socket = new Socket(address, port);
-
-            // takes input from terminal 
-            input  = new DataInputStream(System.in);
 
             in = new DataInputStream(
                     new BufferedInputStream(socket.getInputStream()));
@@ -69,15 +65,6 @@ public class ChatClient implements ActionListener
 //            }
 //        }
 //
-//        // close the connection
-//        try {
-//            input.close();
-//            out.close();
-//            socket.close();
-//        } catch(IOException i)
-//        {
-//            System.out.println(i);
-//        }
     }
 
     public static void main(String args[])
@@ -126,6 +113,16 @@ public class ChatClient implements ActionListener
                         "Are you sure you want to close this window?", "Close Window?",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                	// close the connection
+                    try {
+                        out.writeUTF("Over");
+                    	socket.close();
+                        in.close();
+                        out.close();
+                    } catch(IOException i)
+                    {
+                       System.out.println(i);
+                    }
                     System.exit(0);
                 }
             }
