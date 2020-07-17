@@ -48,11 +48,11 @@ public class ChatGUI implements ActionListener {
         frame.setSize(750, 500);
         frame.setVisible(true);
 
-        readFile();
+//        readFile();
 
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                saveFile();
+//                saveFile();
                 if (JOptionPane.showConfirmDialog(frame,
                         "Are you sure you want to close this window?", "Close Window?",
                         JOptionPane.YES_NO_OPTION,
