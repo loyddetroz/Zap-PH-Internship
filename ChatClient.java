@@ -24,12 +24,13 @@ public class ChatClient implements ActionListener
 
     // constructor to put ip address and port
     public ChatClient(String address, int port)  {
+        // render GUI
         render();
+
         // establish a connection 
         try
         {
             socket = new Socket(address, port);
-            System.out.println("Connected");
 
             // takes input from terminal 
             input  = new DataInputStream(System.in);
@@ -50,39 +51,33 @@ public class ChatClient implements ActionListener
         }
 
         // string to read message from input 
-        String line = "";
-
-        // keep reading until "Over" is input
-        String responseFromServer = "";
-        while (!line.equals("Over"))
-        {
-            try
-            {
-                line = input.readLine();
-                out.writeUTF(line);
-
-                responseFromServer = in.readUTF();
-                String botResponse = in.readUTF();
-            	System.out.println(responseFromServer);
-                System.out.println(botResponse);
-            }
-            catch(IOException i)
-            {
-                System.out.println(i);
-            }
-        }
-
-        // close the connection 
-        try
-        {
-            input.close();
-            out.close();
-            socket.close();
-        }
-        catch(IOException i)
-        {
-            System.out.println(i);
-        }
+//        String line = "";
+//
+//        // keep reading until "Over" is input
+//        String responseFromServer = "";
+//        while (!line.equals("Over")) {
+//            try {
+//                line = input.readLine();
+//                out.writeUTF(line);
+//
+//                responseFromServer = in.readUTF();
+//                String botResponse = in.readUTF();
+//            	System.out.println(responseFromServer);
+//                System.out.println(botResponse);
+//            } catch(IOException i) {
+//                System.out.println(i);
+//            }
+//        }
+//
+//        // close the connection
+//        try {
+//            input.close();
+//            out.close();
+//            socket.close();
+//        } catch(IOException i)
+//        {
+//            System.out.println(i);
+//        }
     }
 
     public static void main(String args[])
@@ -179,6 +174,22 @@ public class ChatClient implements ActionListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // keep reading until "Over" is input
+        String responseFromServer = "";
+            try
+            {
+                out.writeUTF(userInput.getText());
 
-    }
+                responseFromServer = in.readUTF();
+                String botResponse = in.readUTF();
+                display.append(responseFromServer);
+                display.append(botResponse);
+                display.append("\n");
+            }
+            catch(IOException i)
+            {
+                System.out.println(i);
+            }
+        }
+
 }

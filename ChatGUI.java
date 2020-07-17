@@ -88,50 +88,50 @@ public class ChatGUI implements ActionListener {
         }
     }
 
-    private String storeAllString="";
-    public void readFile(){
-        try{
-            FileReader read = new FileReader("save/ "+ Login.getPhoneNumber().getText() + ".txt");
+//    private String storeAllString="";
+//    public void readFile(){
+//        try{
+//            FileReader read = new FileReader("save/ "+ Login.getPhoneNumber().getText() + ".txt");
+//
+//            if (read != null) {
+//                Scanner scan = new Scanner(read);
+//                while(scan.hasNextLine()){
+//                    String temp = scan.nextLine()+"\n";
+//                    storeAllString = storeAllString + temp;
+//                }
+//                display.setText(storeAllString);
+//            }
+//        }
+//        catch (Exception exception)
+//        {
+//            exception.printStackTrace();
+//        }
+//    }
 
-            if (read != null) {
-                Scanner scan = new Scanner(read);
-                while(scan.hasNextLine()){
-                    String temp = scan.nextLine()+"\n";
-                    storeAllString = storeAllString + temp;
-                }
-                display.setText(storeAllString);
-            }
-        }
-        catch (Exception exception)
-        {
-            exception.printStackTrace();
-        }
-    }
-
-    public void saveFile() {
-        File writeFile;
-        Writer writer = null;
-
-        writeFile = new File("save/ "+ Login.getPhoneNumber().getText() + ".txt");
-        try {
-            writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(writeFile), "utf-8"));
-            display.write(writer);
-        } catch (IOException ex) {
-            // report
-        } finally {
-            try {
-                writer.close();
-            } catch (Exception ex) {/*ignore*/
-            }
-        }
-    }
+//    public void saveFile() {
+//        File writeFile;
+//        Writer writer = null;
+//
+//        writeFile = new File("save/ "+ Login.getPhoneNumber().getText() + ".txt");
+//        try {
+//            writer = new BufferedWriter(new OutputStreamWriter(
+//                    new FileOutputStream(writeFile), "utf-8"));
+//            display.write(writer);
+//        } catch (IOException ex) {
+//            // report
+//        } finally {
+//            try {
+//                writer.close();
+//            } catch (Exception ex) {/*ignore*/
+//            }
+//        }
+//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         run(userInput.getText());
         userInput.setText("");
-        saveFile();
+//        saveFile();
     }
 
     public static String[] getData() {

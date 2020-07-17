@@ -97,11 +97,11 @@ public class DataRetrieverServer {
                     System.out.println(i); 
                 } 
             }
-            // close connection
-            //System.out.println("Closing Connection");
-            //socket.close();
-            //in.close();
-            //output.close();
+//             close connection
+//            System.out.println("Closing Connection");
+//            socket.close();
+//            in.close();
+//            output.close();
             }
             }
         catch(IOException i) 

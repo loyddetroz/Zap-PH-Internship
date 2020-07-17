@@ -29,6 +29,8 @@ public class ChatServer {
             socket = server.accept();
             System.out.println("ChatClient accepted");
 
+
+
             // takes input from the client socket
             in = new DataInputStream(
                     new BufferedInputStream(socket.getInputStream()));
@@ -44,7 +46,7 @@ public class ChatServer {
                 {
                     input = in.readUTF();
                     if (!input.equals("") && isFirstTime) {
-                        out.writeUTF("User: " + input);
+                        out.writeUTF("User: " + input + "\n");
                         out.writeUTF("Zap: " + "How can I help you?" + "\n");
                         isFirstTime = false;
                     } else {
@@ -55,9 +57,10 @@ public class ChatServer {
                         currentCommand = resultState.getCommand();
                         currentState = resultState.getNextState();
 
-                        out.writeUTF("User: " + input);
+                        out.writeUTF("User: " + input + "\n");
                         out.writeUTF("Zap: " + output + "\n");
                     }
+
                 }
                 catch(IOException i)
                 {
