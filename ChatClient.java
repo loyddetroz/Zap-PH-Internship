@@ -69,7 +69,7 @@ public class ChatClient implements ActionListener
 
     public static void main(String args[])
     {
-        ChatClient chatClient = new ChatClient("127.0.0.1", 3000);
+        ChatClient chatClient = new ChatClient("localhost", 3000);
     }
 
     public void render() {
