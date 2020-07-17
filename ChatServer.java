@@ -25,11 +25,9 @@ public class ChatServer {
             System.out.println("Server started");
 
             System.out.println("Waiting for a client ...");
-
+            while(true) {
             socket = server.accept();
             System.out.println("ChatClient accepted");
-
-
 
             // takes input from the client socket
             in = new DataInputStream(
@@ -70,8 +68,9 @@ public class ChatServer {
             System.out.println("Closing connection");
 
             // close connection
-            socket.close();
-            in.close();
+            //socket.close();
+            //in.close();
+        }
         }
         catch(IOException i)
         {
