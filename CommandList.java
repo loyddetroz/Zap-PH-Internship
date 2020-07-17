@@ -37,7 +37,7 @@ public class CommandList {
 
         return keys;
     }
-        
+    
     public static String printCommandResponse(String command) {
         Hashtable<String, String> hashtable = new Hashtable<>();
         initializeCommands();
