@@ -11,7 +11,7 @@ public class ChatServer extends Login{
     private DataInputStream dis = null;
     private DataOutputStream dos = null;
     private String id = Login.getPhoneNumber().getText();
-    private MultiMap<String, Socket> multimap = new MultiMap<String, Socket>();
+    private MultiMap<String, Socket> multimap = new MultiMap<>();
     
     
     // starts server and waits for a connection
@@ -21,8 +21,7 @@ public class ChatServer extends Login{
         states[2] = new State3();
         states[3] = new State4();
         // starts server and waits for a connection
-        try
-        {
+        try {
             server = new ServerSocket(port);
             System.out.println("Chat Server started");
 
@@ -37,47 +36,58 @@ public class ChatServer extends Login{
                     new BufferedInputStream(socket.getInputStream()));
 
             dos = new DataOutputStream(socket.getOutputStream());
-            
-            String input = "";
-            boolean isFirstTime = true;
-            if (multimap.containsKey(id)) {
-            	isFirstTime = false;
-            }
             // reads message from client until "Over" is sent
-            while (!input.equals("Over"))
-            {
-                try
-                {
-                    input = dis.readUTF();
-                    if (!input.equals("") && isFirstTime == true) {
-                        dos.writeUTF("User: " + input + "\n");
-                        dos.writeUTF("Zap: " + "How can I help you?" + "\n");
-                        isFirstTime = false;
-                    } else {
-                    	StateS state = states[currentState];
-                        ResultState resultState = state.process(input, currentCommand);
-                        String output = resultState.getNextMessage();
-                        currentCommand = resultState.getCommand();
-                        currentState = resultState.getNextState();
 
-                        dos.writeUTF("User: " + input + "\n");
-                        dos.writeUTF("Zap: " + output + "\n");
+            Thread process = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String input = "";
+                    boolean isFirstTime = true;
+                    if (multimap.containsKey(id)) {
+                        isFirstTime = false;
+                    }
+
+                    while (!input.equals("Over")) {
+                        try
+                        {
+                            input = dis.readUTF();
+                            if (!input.equals("") && isFirstTime == true) {
+                                dos.writeUTF("User: " + input + "\n");
+                                dos.writeUTF("Zap: " + "How can I help you?" + "\n");
+                                isFirstTime = false;
+                            } else {
+                                StateS state = states[currentState];
+                                ResultState resultState = state.process(input, currentCommand);
+                                String output = resultState.getNextMessage();
+                                currentCommand = resultState.getCommand();
+                                currentState = resultState.getNextState();
+
+                                for (Socket socket: multimap.get(id)) {
+                                    DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+                                    dos.writeUTF("User: " + input + "\n");
+                                    dos.writeUTF("Zap: " + output + "\n");
+                                }
+                            }
+                        }
+                        catch(IOException i)
+                        {
+                            System.out.println(i);
+                        }
                     }
                 }
-                catch(IOException i)
-                {
-                    System.out.println(i);
-                }
-            }
+            });
+
+            process.start();
+
             
             System.out.println("Assigning new thread for this number");
-            for (Socket sockets : multimap.get(id)) {
+            for (Socket socket : multimap.get(id)) {
             	
-            System.out.println(sockets);
-            // create a new thread object 
-            //Thread t = new ClientHandler(sockets, dis, dos);  
-            // Invoking the start() method 
-            //t.start();
+            System.out.println(socket);
+            // create a new thread object
+//            Thread t = new ClientHandler(socket, dis, dos);
+            // Invoking the start() method
+//            t.start();
             }
             //System.out.println("Closing connection");
 
@@ -86,10 +96,11 @@ public class ChatServer extends Login{
             //in.close();
         }
         }
-        catch (Exception e){ 
-            socket.close(); 
-            e.printStackTrace(); 
-        } 
+        catch (Exception e){
+            // SOCKET.CLOSE is not working Gives out a null pointer exception.
+//            socket.close();
+            e.printStackTrace();
+        }
     }
 
     public static void main(String args[]) throws IOException

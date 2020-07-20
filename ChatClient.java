@@ -19,14 +19,15 @@ public class ChatClient implements ActionListener
     private JTextField userInput;
     private JTextArea display;
     private JButton sendButton;
+    private Scanner scanner = new Scanner(System.in);
 
 
     // constructor to put ip address and port
     public ChatClient(String address, int port)  {
         // render GUI
-        render();
 
-        // establish a connection 
+        render();
+        // establish a connection
         try
         {
             socket = new Socket(address, port);
@@ -34,8 +35,39 @@ public class ChatClient implements ActionListener
             in = new DataInputStream(
                     new BufferedInputStream(socket.getInputStream()));
 
-            // sends output to the socket 
+            // sends output to the socket
             out    = new DataOutputStream(socket.getOutputStream());
+
+            // readMessage thread
+            Thread readMessage = new Thread(new Runnable()
+            {
+                @Override
+                public void run() {
+
+                    while (true) {
+                        try {
+                            // read the message sent to this client
+                            String msg = in.readUTF();
+                            String msg2 = in.readUTF();
+                            SwingUtilities.invokeLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    display.append(msg);
+                                    display.append(msg2);
+                                    display.append("\n");
+                                }
+                            });
+                        } catch (IOException e) {
+
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+            });
+
+            readMessage.start();
+
         }
         catch(UnknownHostException u)
         {
@@ -46,7 +78,7 @@ public class ChatClient implements ActionListener
             System.out.println(i);
         }
 
-        // string to read message from input 
+        // string to read message from input
 //        String line = "";
 //
 //        // keep reading until "Over" is input
@@ -113,15 +145,15 @@ public class ChatClient implements ActionListener
                         "Are you sure you want to close this window?", "Close Window?",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-                	// close the connection
+                    // close the connection
                     try {
                         out.writeUTF("Over");
-                    	socket.close();
+                        socket.close();
                         in.close();
                         out.close();
                     } catch(IOException i)
                     {
-                       System.out.println(i);
+                        System.out.println(i);
                     }
                     System.exit(0);
                 }
@@ -173,22 +205,21 @@ public class ChatClient implements ActionListener
     public void actionPerformed(ActionEvent e) {
         // keep reading until "Over" is input
         String responseFromServer = "";
-            try
-            {
-                out.writeUTF(userInput.getText());
+        try
+        {
+            out.writeUTF(userInput.getText());
 
-                responseFromServer = in.readUTF();
-                String botResponse = in.readUTF();
-                display.append(responseFromServer);
-                display.append(botResponse);
-                display.append("\n");
-                userInput.setText("");
-                saveFile();
-            }
-            catch(IOException i)
-            {
-                System.out.println(i);
-            }
+//                responseFromServer = in.readUTF();
+//                String botResponse = in.readUTF();
+//                display.append(responseFromServer);
+//                display.append(botResponse);
+//                display.append("\n");
+            userInput.setText("");
+            saveFile();
         }
-
+        catch(IOException i)
+        {
+            System.out.println(i);
+        }
+    }
 }
