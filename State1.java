@@ -27,7 +27,7 @@ public class State1 extends StateS {
     		}
         	int m = CommandList.validateKeywords(entries[0], modifiedEntries);
         	if (modifiedEntries.length == m) {
-                ClientHandler.setData(modifiedEntries);
+                ChatServer.setData(modifiedEntries);
                 resultState.setNextState(3);
                 resultState.setCommand(entries[0]);
                 resultState.setNextMessage("Confirming request to " + input + ".");

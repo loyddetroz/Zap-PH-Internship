@@ -19,14 +19,13 @@ public class ChatClient implements ActionListener
     private JTextField userInput;
     private JTextArea display;
     private JButton sendButton;
-    private Scanner scanner = new Scanner(System.in);
 
 
     // constructor to put ip address and port
     public ChatClient(String address, int port)  {
         // render GUI
-
         render();
+
         // establish a connection 
         try
         {
@@ -37,37 +36,6 @@ public class ChatClient implements ActionListener
 
             // sends output to the socket 
             out    = new DataOutputStream(socket.getOutputStream());
-
-            // readMessage thread
-            Thread readMessage = new Thread(new Runnable()
-            {
-                @Override
-                public void run() {
-
-                    while (true) {
-                        try {
-                            // read the message sent to this client
-                            String msg = in.readUTF();
-                            String msg2 = in.readUTF();
-                            SwingUtilities.invokeLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    display.append(msg);
-                                    display.append(msg2);
-                                    display.append("\n");
-                                }
-                            });
-                        } catch (IOException e) {
-
-                            e.printStackTrace();
-                        }
-                    }
-
-                }
-            });
-
-            readMessage.start();
-
         }
         catch(UnknownHostException u)
         {
@@ -78,7 +46,7 @@ public class ChatClient implements ActionListener
             System.out.println(i);
         }
 
-        // string to read message from input
+        // string to read message from input 
 //        String line = "";
 //
 //        // keep reading until "Over" is input
@@ -209,11 +177,11 @@ public class ChatClient implements ActionListener
             {
                 out.writeUTF(userInput.getText());
 
-//                responseFromServer = in.readUTF();
-//                String botResponse = in.readUTF();
-//                display.append(responseFromServer);
-//                display.append(botResponse);
-//                display.append("\n");
+                responseFromServer = in.readUTF();
+                String botResponse = in.readUTF();
+                display.append(responseFromServer);
+                display.append(botResponse);
+                display.append("\n");
                 userInput.setText("");
                 saveFile();
             }
@@ -221,5 +189,6 @@ public class ChatClient implements ActionListener
             {
                 System.out.println(i);
             }
-    }
+        }
+
 }

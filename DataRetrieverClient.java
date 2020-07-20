@@ -43,8 +43,8 @@ public class DataRetrieverClient {
         } 
   
         // string to read message from input 
-        String[] data = ClientHandler.getData();
-        String command = ClientHandler.getCurrentCommand();
+        String[] data = ChatServer.getData();
+        String command = ChatServer.getCurrentCommand();
         StringBuilder builder = new StringBuilder();
         for(String s : data) {
             builder.append(s + " ");
