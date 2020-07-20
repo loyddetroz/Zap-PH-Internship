@@ -5,20 +5,17 @@ import java.net.Socket;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-class ClientHandler extends Thread  
-{ 
+class ClientHandler extends Thread {
 	private static String currentCommand = "";
     private static int currentState = 0;
     private static StateS[] states = new StateS[4];
     public static String[] data;
     final DataInputStream dis; 
     final DataOutputStream dos; 
-    final Socket s; 
-      
-  
+    final Socket s;
+
     // Constructor 
-    public ClientHandler(Socket s, DataInputStream dis, DataOutputStream dos)  
-    { 
+    public ClientHandler(Socket s, DataInputStream dis, DataOutputStream dos) {
         this.s = s; 
         this.dis = dis; 
         this.dos = dos; 
@@ -29,15 +26,12 @@ class ClientHandler extends Thread
     } 
   
     @Override
-    public void run()  
-    {  
+    public void run() {
         String input = "";
         boolean isFirstTime = true;
         // reads message from client until "Over" is sent
-        while (!input.equals("Over"))
-        {
-            try
-            {
+        while (!input.equals("Over")) {
+            try {
                 input = dis.readUTF();
                 if (!input.equals("") && isFirstTime) {
                     dos.writeUTF("User: " + input + "\n");
@@ -53,20 +47,17 @@ class ClientHandler extends Thread
                     dos.writeUTF("User: " + input + "\n");
                     dos.writeUTF("Zap: " + output + "\n");
                 }
-            }
-            catch(IOException i)
-            {
+            } catch(IOException i) {
                 System.out.println(i);
             }
         } 
           
-        try
-        { 
+        try {
             // closing resources 
             this.dis.close(); 
             this.dos.close(); 
               
-        }catch(IOException e){ 
+        } catch(IOException e){
             e.printStackTrace(); 
         } 
     } 
@@ -82,4 +73,5 @@ class ClientHandler extends Thread
     public static String getCurrentCommand() {
         return currentCommand;
     }
-} 
+    
+}

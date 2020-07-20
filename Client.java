@@ -20,18 +20,18 @@ public class Client
         DataInputStream dis = new DataInputStream(s.getInputStream());
         DataOutputStream dos = new DataOutputStream(s.getOutputStream());
 
-        // sendMessage thread 
+        // sendMessage thread
         Thread sendMessage = new Thread(new Runnable()
         {
             @Override
             public void run() {
                 while (true) {
 
-                    // read the message to deliver. 
+                    // read the message to deliver.
                     String msg = scn.nextLine();
 
                     try {
-                        // write on the output stream 
+                        // write on the output stream
                         dos.writeUTF(msg);
                     } catch (IOException e) {
                         e.printStackTrace();

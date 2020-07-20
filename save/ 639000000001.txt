@@ -1,0 +1,12 @@
+User: get balance
+Zap: How can I help you?
+
+User: get balance
+Zap: I would like to confirm if you wish to get balance.
+
+TESTUser: hello
+
+TESTTEST2
+User: hello
+Zap: How can I help you?
+
