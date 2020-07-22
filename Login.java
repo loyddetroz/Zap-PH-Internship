@@ -23,7 +23,7 @@ public class Login {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -78,7 +78,7 @@ public class Login {
 				if (Login.getCredentials(pNumber, pass).equalsIgnoreCase("success")) {
 					JOptionPane.showMessageDialog(frame, "Login Successful");
 					frame.dispose();
-					ChatClient chatClient = new ChatClient("localhost", 3000);
+					ChatClient chatClient = new ChatClient("localhost", 3000, pNumber);
 				}
 				else if (Login.getCredentials(pNumber, pass).equalsIgnoreCase("invalid pin")) {
 					JOptionPane.showMessageDialog(frame, "Invalid PIN");
@@ -117,10 +117,6 @@ public class Login {
 
         return listOfLines;
     }
-	
-	public static JTextField getPhoneNumber() {
-		return phoneNumber;
-	}
 	
 	public static String getCredentials(String number, String pin) {
         ArrayList users = readFile("data/users");

@@ -19,13 +19,15 @@ public class ChatClient implements ActionListener
     private JTextField userInput;
     private JTextArea display;
     private JButton sendButton;
+    static String id;
 
-
-    // constructor to put ip address and port
-    public ChatClient(String address, int port)  {
+	// constructor to put ip address and port
+    public ChatClient(String address, int port, String number)  {
+    	
+    	id = number;
         // render GUI
-
         render();
+
         // establish a connection 
         try
         {
@@ -35,8 +37,10 @@ public class ChatClient implements ActionListener
                     new BufferedInputStream(socket.getInputStream()));
 
             // sends output to the socket 
-            out    = new DataOutputStream(socket.getOutputStream());
-
+            out = new DataOutputStream(socket.getOutputStream());
+            
+            out.writeUTF(number);
+            
             // readMessage thread
             Thread readMessage = new Thread(new Runnable()
             {
@@ -67,7 +71,6 @@ public class ChatClient implements ActionListener
             });
 
             readMessage.start();
-
         }
         catch(UnknownHostException u)
         {
@@ -140,7 +143,7 @@ public class ChatClient implements ActionListener
 
     public void readFile(){
         try{
-            FileReader read = new FileReader("save/ "+ Login.getPhoneNumber().getText() + ".txt");
+            FileReader read = new FileReader("save/ "+ id + ".txt");
 
             if (read != null) {
                 Scanner scan = new Scanner(read);
@@ -161,7 +164,7 @@ public class ChatClient implements ActionListener
         File writeFile;
         Writer writer = null;
 
-        writeFile = new File("save/ "+ Login.getPhoneNumber().getText() + ".txt");
+        writeFile = new File("save/ "+ id + ".txt");
         try {
             writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(writeFile), "utf-8"));
