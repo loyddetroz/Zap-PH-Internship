@@ -50,13 +50,13 @@ class ClientHandler extends Thread
                     { 
                         if (mc.name.equals(this.name) && mc.isLoggedIn == true)  
                         {
-                            if (!input.equals("edf6cc9f248bb5717158dc24496746a2d4d93b41")) {
-                                mc.dos.writeUTF("User: " + input + "\n");
-                                mc.dos.writeUTF("Zap: " + output + "\n");
-                            }
+                        	if (!input.equals("edf6cc9f248bb5717158dc24496746a2d4d93b41")) {
+                        	mc.dos.writeUTF("User: " + input + "\n");
+                            mc.dos.writeUTF("Zap: " + output + "\n");                         
+                            System.out.println("Done sending updates to clients" + mc);
+                        	}
                         } 
                     }
-                    System.out.println("Done sending updates to clients");
             }
             catch(IOException i)
             {
@@ -67,10 +67,10 @@ class ClientHandler extends Thread
         try
         { 
             // closing resources 
-	    this.isLoggedIn=false; 
-            this.s.close();
+        	this.isLoggedIn=false; 
             this.dis.close(); 
             this.dos.close(); 
+            this.s.close();
               
         }catch(IOException e){ 
             e.printStackTrace(); 

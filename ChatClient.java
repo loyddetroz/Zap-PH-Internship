@@ -181,16 +181,9 @@ public class ChatClient implements ActionListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // keep reading until "Over" is input
-        //String responseFromServer = "";
             try
             {
                 out.writeUTF(userInput.getText());
-//                responseFromServer = in.readUTF();
-//                String botResponse = in.readUTF();
-//                display.append(responseFromServer);
-//                display.append(botResponse);
-//                display.append("\n");
                 userInput.setText("");
             }
             catch(IOException i)
