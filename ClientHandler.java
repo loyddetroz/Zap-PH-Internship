@@ -67,6 +67,8 @@ class ClientHandler extends Thread
         try
         { 
             // closing resources 
+	    this.isLoggedIn=false; 
+            this.s.close();
             this.dis.close(); 
             this.dos.close(); 
               
