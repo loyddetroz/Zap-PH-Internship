@@ -41,6 +41,22 @@ class ClientHandler extends Thread
             try
             {
             		input = dis.readUTF();
+            		if (!ChatServer.ids.contains(this.name)) {
+            			ChatServer.ids.add(this.name);
+            			for (ClientHandler mc : ChatServer.ar)  
+                        { 
+            			if (mc.name.equals(this.name) && mc.isLoggedIn == true)  
+                        {
+	            			
+	                        if (!input.equals("edf6cc9f248bb5717158dc24496746a2d4d93b41")) {
+	                        	mc.dos.writeUTF("User: " + input + "\n");
+		                        mc.dos.writeUTF("Zap: " + "How can I help you?" + "\n");                       
+	                            System.out.println("Done sending updates to clients" + mc);
+	                        }
+                        }
+                        }
+            		}
+            		else {
                     StateS state = states[currentState];
                     ResultState resultState = state.process(input, currentCommand);
                     String output = resultState.getNextMessage();
@@ -57,6 +73,7 @@ class ClientHandler extends Thread
                         	}
                         } 
                     }
+            		}
             }
             catch(IOException i)
             {

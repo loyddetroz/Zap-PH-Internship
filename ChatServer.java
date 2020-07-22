@@ -12,7 +12,7 @@ public class ChatServer{
     static Vector<ClientHandler> ar = new Vector<>();
     
     static ArrayList<String> ids = new ArrayList<String>();
-
+    
     // starts server and waits for a connection
     public ChatServer(int port) throws IOException {
         // starts server and waits for a connection
@@ -36,13 +36,6 @@ public class ChatServer{
             
             String id = dis.readUTF();
             
-            String input = "";
-            if (!ids.contains(id)) { 
-            input = dis.readUTF();
-            ids.add(id);
-            dos.writeUTF("User: " + input + "\n");
-            dos.writeUTF("Zap: " + "How can I help you?" + "\n");
-            
             // Create a new handler object for handling this request. 
             ClientHandler mtch = new ClientHandler(socket, id, dis, dos); 
   
@@ -57,22 +50,6 @@ public class ChatServer{
             // start the thread. 
             t.start();
             }
-            else {            	
-            	// Create a new handler object for handling this request. 
-                ClientHandler mtch = new ClientHandler(socket, id, dis, dos); 
-      
-                // Create a new Thread with this object. 
-                Thread t = new Thread(mtch); 
-                  
-                System.out.println("Adding this client to active client list"); 
-      
-                // add this client to active clients list 
-                ar.add(mtch); 
-      
-                // start the thread. 
-                t.start();
-            }
-        }
         }
         catch (Exception e){  
             e.printStackTrace(); 
