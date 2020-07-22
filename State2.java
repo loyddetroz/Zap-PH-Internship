@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class State2 extends State {
+public class State2 extends StateS {
 
     @Override
     public ResultState process(String input, String command) {
@@ -23,16 +23,16 @@ public class State2 extends State {
     		}
         	int m = CommandList.validateKeywords(entries[0], modifiedEntries);
         	if (modifiedEntries.length == m) {
-                Main.setData(modifiedEntries);
+                ClientHandler.setData(modifiedEntries);
                 resultState.setNextState(3);
-                resultState.setCommand(input);
+                resultState.setCommand(entries[0]);
                 resultState.setNextMessage("Confirming request to " + input + ".");
             } else if (modifiedEntries.length < m){
-                resultState.setNextState(2);
+                resultState.setNextState(0);
                 resultState.setCommand(entries[0]);
-                resultState.setNextMessage("You lack a field kindly re-enter the requested information.");
+                resultState.setNextMessage("You lack a field kindly re-enter the requested information. ");
             } else {
-                resultState.setNextState(2);
+                resultState.setNextState(0);
                 resultState.setCommand(entries[0]);
                 resultState.setNextMessage("Invalid input. Please try again.");
             }
@@ -42,7 +42,7 @@ public class State2 extends State {
             resultState.setCommand(input);
             resultState.setNextMessage("I would like to confirm if you wish to " + input + ".");
         } else if (input.toLowerCase().contains("yes") && Arrays.asList(commands).contains(command)) {
-            resultState.setNextState(2);
+            resultState.setNextState(3);
             resultState.setCommand(command.toLowerCase());
             resultState.setNextMessage(CommandList.printCommandResponse(command));
         }
