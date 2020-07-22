@@ -1,0 +1,107 @@
+User: hello
+Zap: How can I help you?
+
+User: hello
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+
+User: get balance
+Zap: I would like to confirm if you wish to get balance.
+
+User: yes
+Zap: Alright, kindly enter the following BALANCE<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: BALANCE 09176780012 123456 Angus
+
+User: get balance
+Zap: I would like to confirm if you wish to get balance.
+
+User: yes
+Zap: Alright, kindly enter the following BALANCE<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: BALANCE 09176780012 123456 Angus
+
+User: get balance
+Zap: I would like to confirm if you wish to get balance.
+
+User: yes
+Zap: Alright, kindly enter the following BALANCE<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: BALANCE 09176780012 123456 Angus
+
+User: alright
+Zap: How can I help you?
+
+User: hello
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+
+User: 
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+
+User: hello
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+
+User: get balance
+Zap: I would like to confirm if you wish to get balance.
+
+User: 
+Zap: How can I help you?
+
+User: get balance
+Zap: I would like to confirm if you wish to get balance.
+
+User: Over
+Zap: How can I help you?
+
+User: 1
+Zap: How can I help you?
+
+User: get balance
+Zap: How can I help you?
+
+User: yes
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+

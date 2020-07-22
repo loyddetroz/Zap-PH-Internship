@@ -36,7 +36,7 @@ class ClientHandler extends Thread
     public void run()  
     {  
         String input = "";
-        while (!input.equals("Over"))
+        while (!input.equals("edf6cc9f248bb5717158dc24496746a2d4d93b41"))
         {
             try
             {
@@ -50,8 +50,10 @@ class ClientHandler extends Thread
                     { 
                         if (mc.name.equals(this.name) && mc.isLoggedIn == true)  
                         {
-                        	mc.dos.writeUTF("User: " + input + "\n");
-                            mc.dos.writeUTF("Zap: " + output + "\n");
+                            if (!input.equals("edf6cc9f248bb5717158dc24496746a2d4d93b41")) {
+                                mc.dos.writeUTF("User: " + input + "\n");
+                                mc.dos.writeUTF("Zap: " + output + "\n");
+                            }
                         } 
                     }
                     System.out.println("Done sending updates to clients");

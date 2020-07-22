@@ -125,7 +125,7 @@ public class ChatClient implements ActionListener
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
                 	// close the connection
                     try {
-                        out.writeUTF("Over");
+                        out.writeUTF("edf6cc9f248bb5717158dc24496746a2d4d93b41");
                     	socket.close();
                         in.close();
                         out.close();
