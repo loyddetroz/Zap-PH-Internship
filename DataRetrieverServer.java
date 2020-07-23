@@ -4,7 +4,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class DataRetrieverServer {
-    private String[] commandsD = CommandList.getCommands();
+    private ArrayList<String> commandsD = CommandList.getCommands();
     private Socket socket = null;
     private ServerSocket server = null;
     private DataInputStream in = null;
@@ -41,52 +41,52 @@ public class DataRetrieverServer {
                     commandFromClient = in.readUTF();
                     dataFromClient = in.readUTF();
                     String[] info = dataFromClient.split(" ");
-                    if(commandFromClient.equalsIgnoreCase(commandsD[0])) {
+                    if(commandFromClient.equalsIgnoreCase(commandsD.get(0))) {
 	                    dataToClient = getBalance(info[0], info[1], info[2]);
 	                    output.writeUTF(dataToClient);
 	                    dataFromClient = "Over";
                     }
-                    else if(commandFromClient.equalsIgnoreCase(commandsD[1])) {
+                    else if(commandFromClient.equalsIgnoreCase(commandsD.get(1))) {
                         dataToClient = getCoupons(info[0], info[1], info[2]);
                         output.writeUTF(dataToClient);
                         dataFromClient = "Over";
                     }
-                    else if(commandFromClient.equalsIgnoreCase(commandsD[2])) {
+                    else if(commandFromClient.equalsIgnoreCase(commandsD.get(2))) {
                         dataToClient = getOpenBranches();
                         output.writeUTF(dataToClient);
                         dataFromClient = "Over";
                     }
-                    else if(commandFromClient.equalsIgnoreCase(commandsD[3])) {
+                    else if(commandFromClient.equalsIgnoreCase(commandsD.get(3))) {
                         dataToClient = getRank(info[0], info[1], info[2]);
                         output.writeUTF(dataToClient);
                         dataFromClient = "Over";
                     }
-                    else if(commandFromClient.equalsIgnoreCase(commandsD[4])) {
+                    else if(commandFromClient.equalsIgnoreCase(commandsD.get(4))) {
                         dataToClient = getPromotions();
                         output.writeUTF(dataToClient);
                         dataFromClient = "Over";
                     }
-                    else if(commandFromClient.equalsIgnoreCase(commandsD[5])) {
+                    else if(commandFromClient.equalsIgnoreCase(commandsD.get(5))) {
                         dataToClient = voidTX();
                         output.writeUTF(dataToClient);
                         dataFromClient = "Over";
                     }
-                    else if(commandFromClient.equalsIgnoreCase(commandsD[6])) {
+                    else if(commandFromClient.equalsIgnoreCase(commandsD.get(6))) {
                         dataToClient = deactivate();
                         output.writeUTF(dataToClient);
                         dataFromClient = "Over";
                     }
-                    else if(commandFromClient.equalsIgnoreCase(commandsD[7])) {
+                    else if(commandFromClient.equalsIgnoreCase(commandsD.get(7))) {
                         dataToClient = listBranches(info[0]);
                         output.writeUTF(dataToClient);
                         dataFromClient = "Over";
                     }
-                    else if(commandFromClient.equalsIgnoreCase(commandsD[8])) {
+                    else if(commandFromClient.equalsIgnoreCase(commandsD.get(8))) {
                         dataToClient = getAddressBranch(info[0]);
                         output.writeUTF(dataToClient);
                         dataFromClient = "Over";
                     }
-                    else if(commandFromClient.equalsIgnoreCase(commandsD[9])) {
+                    else if(commandFromClient.equalsIgnoreCase(commandsD.get(9))) {
                         dataToClient = getOpeningHours(info[0]);
                         output.writeUTF(dataToClient);
                         dataFromClient = "Over";

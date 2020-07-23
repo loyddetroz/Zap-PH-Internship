@@ -19,11 +19,11 @@ public class ChatClient implements ActionListener
     private JTextField userInput;
     private JTextArea display;
     private JButton sendButton;
-    static String id;
+    private static String id;
+    private boolean running = true;
 
 	// constructor to put ip address and port
     public ChatClient(String address, int port, String number)  {
-    	
     	id = number;
         // render GUI
         render();
@@ -47,7 +47,7 @@ public class ChatClient implements ActionListener
                 @Override
                 public void run() {
 
-                    while (true) {
+                    while (running) {
                         try {
                             // read the message sent to this client
                             String msg = in.readUTF();
@@ -125,10 +125,11 @@ public class ChatClient implements ActionListener
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
                 	// close the connection
                     try {
+                        running = false;
                         out.writeUTF("edf6cc9f248bb5717158dc24496746a2d4d93b41");
-                    	socket.close();
                         in.close();
                         out.close();
+                        socket.close();
                     } catch(IOException i)
                     {
                        System.out.println(i);

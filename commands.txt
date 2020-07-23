@@ -1,0 +1,10 @@
+get balance|BALANCE|Alright, kindly enter the following BALANCE<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: BALANCE 09176780012 123456 Angus|3
+get coupons|COUPONS|Alright, kindly enter the following COUPONS<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: COUPONS 09176780012 123456 Angus|3
+get open branches nearby|OPEN_BRANCHES|Alright, kindly enter the following OPEN_BRANCHES<SPACE>merchantName<SPACE>Long<SPACE>Lat. Example: OPEN_BRANCHES Angus 80 90|3
+get my rank|RANK|Alright, kindly enter the following RANK<SPACE>phoneNumber<SPACE>pin<SPACE>merchantName. Example: RANK 09176780012 123456 Angus|3
+know ongoing promotions|PROMOTIONS|Alright, kindly enter the following PROMOTIONS<SPACE>merchantName<SPACE>branch1<SPACE>branch.. (Separated by space for each branch) Example: PROMOTIONS Angus Branch1 Branch2 Branch3..)|123456
+void transaction|VOID_TX|Alright, kindly enter the following VOID_TX<SPACE>refNo<SPACE>reason Example: VOID_TX 1234567 Reason|2
+deactivate user|DEACTIVATE|Alright, kindly enter the following DEACTIVATE<SPACE>UserId Example: DEACTIVATE 123456|1
+list branches|LIST_BRANCHES|Alright, kindly enter the following LIST_BRANCHES<SPACE>merchantName Example: LIST_BRANCHES Angus|1
+get branch address|ADDRESS_BRANCH|Alright, kindly enter the following ADDRESS_BRANCH<SPACE>branchName Example: ADDRESS_BRANCH Angus|1
+get opening hours of branch|OPENING_HOURS|Alright, kindly enter the following OPENING_HOURS<SPACE>branchName Example: OPENING_HOURS Angus|1

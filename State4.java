@@ -1,11 +1,12 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class State4 extends StateS {
 
     @Override
     public ResultState process(String input, String command) {
-    	String[] commands = CommandList.getCommands();
-        String[] keys = CommandList.getKeys();
+    	ArrayList<String> commands = CommandList.getCommands();
+        ArrayList<String> keys = CommandList.getKeys();
         String[] entries = input.split(" ");
         String[] modifiedEntries = Arrays.copyOfRange(entries, 1, entries.length);
         ResultState resultState = new ResultState();
@@ -22,19 +23,19 @@ public class State4 extends StateS {
             resultState.setCommand(command);
             resultState.setNextMessage(CommandList.printCommandResponse(command));
         } 
-        else if (Arrays.asList(CommandList.getCommands()).contains(input.toLowerCase())) {
+        else if (CommandList.getCommands().contains(input.toLowerCase())) {
             resultState.setNextState(2);
             resultState.setCommand(input);
             resultState.setNextMessage(CommandList.printCommandResponse(input));
         }
-        else if (Arrays.asList(keys).contains(entries[0].toUpperCase())) {
-        	for (int i = 0; i < keys.length; i++) {
-    			if(entries[0].toUpperCase().equals(keys[i])) {
-    				entries[0] = commands[i];
+        else if (keys.contains(entries[0].toUpperCase())) {
+        	for (int i = 0; i < keys.size(); i++) {
+    			if(entries[0].toUpperCase().equals(keys.get(i))) {
+    				entries[0] = commands.get(i);
     			}
     		}
         	int m = CommandList.validateKeywords(entries[0], modifiedEntries);
-        	if (modifiedEntries.length == m) {
+        	if (modifiedEntries.length == m || m == 123456) {
                 ClientHandler.setData(modifiedEntries);
                 resultState.setNextState(3);
                 resultState.setCommand(entries[0]);
