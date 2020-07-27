@@ -1091,3 +1091,135 @@ User: yes
 Zap: Invalid number.
 Anything else I can help you with?
 
+User: gsd
+Zap: How can I help you?
+
+User: d
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+get tickets
+
+User: get tickets
+Zap: I would like to confirm if you wish to get tickets.
+
+User: yes
+Zap: Alright, kindly enter the following TICKET<SPACE>NUMBER Example: TICKET 123456
+
+User: TICKET 123456
+Zap: How can I help you?
+
+User:  TICKETS 123456
+Zap: How can I help you?
+
+User: TICKETS 123456
+Zap: Confirming request to TICKETS 123456.
+
+User: TICKETS 123456
+Zap: How can I help you?
+
+User: TICKETS 123456
+Zap: Confirming request to TICKETS 123456.
+
+User: get tickets
+Zap: How can I help you?
+
+User: get tickets
+Zap: I would like to confirm if you wish to get tickets.
+
+User: yes
+Zap: Alright, kindly enter the following TICKETS<SPACE>NUMBER Example: TICKETS 123456
+
+User: TICKETS 123456
+Zap: Confirming request to TICKETS 123456.
+
+User: TICKETS 123456
+Zap: Confirming request to TICKETS 123456.
+
+User: dsf
+Zap: How can I help you?
+
+User: get tickets
+Zap: I would like to confirm if you wish to get tickets.
+
+User: yes
+Zap: Alright, kindly enter the following TICKETS<SPACE>NUMBER Example: TICKETS 123456
+
+User: TICKETS 123456
+Zap: Confirming request to TICKETS 123456.
+
+User: yes
+Zap: Functionality not supported
+Anything else I can help you with?
+
+User: TICKETS 123456
+Zap: Confirming request to TICKETS 123456.
+
+User: yes
+Zap: Functionality not supported
+Anything else I can help you with?
+
+User: get balance
+Zap: I would like to confirm if you wish to get balance.
+
+User: balance 1 1 1 
+Zap: Confirming request to balance 1 1 1 .
+
+User: yes
+Zap: Incorrect pin.
+Anything else I can help you with?
+
+User: dsaf
+Zap: How can I help you?
+
+User: sdf
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+
+User: df
+Zap: How can I help you?
+
+User: f
+Zap: List of Request Commands: 
+get balance
+get coupons
+get open branches nearby
+get my rank
+know ongoing promotions
+void transaction
+deactivate user
+list branches
+get branch address
+get opening hours of branch
+get tickets
+
+User: get tickets
+Zap: I would like to confirm if you wish to get tickets.
+
+User: yes
+Zap: Alright bla bla bla
+
+User: TICKETS 123456
+Zap: Confirming request to TICKETS 123456.
+
+User: yes
+Zap: Functionality not supported
+Anything else I can help you with?
+

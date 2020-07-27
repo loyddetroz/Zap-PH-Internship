@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Zap ChatBot</title>
+  </head>
+  <body>
+    <textarea name="chatDisplay" cols="70" rows="40"></textarea>
+    <form action="/chat" method="POST">
+      <input type="text" name="chatMessage" size="65" />
+      <button type="submit" id="sendButton">Send</button>
+
+      <script>
+        document
+          .getElementById("sendButton")
+          .addEventListener("click", function (event) {
+            event.preventDefault();
+          });
+      </script>
+    </form>
+  </body>
+</html>

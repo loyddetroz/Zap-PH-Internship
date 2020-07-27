@@ -23,41 +23,70 @@ public class LoginForm {
             
             PrintStream out = new PrintStream(socket.getOutputStream());
             
-            String htmlForm = "<html>\n" + 
-            		"	<body>\n" + 
-            		"		<form action = \"/submit\" method = \"get\">\n" + 
-            		"			PhoneNumber: <input type = \"text\" name = \"number\" value = \"\"><br>\n" +
-            		"			PIN: <input type = \"text\" name = \"pin\" value = \"\"><br>\n" +
-            		"			<input type = \"submit\" value = \"Login\">\n" + 
-            		"		</form>\n" + 
-            		"	</body>\n" + 
-            		"</html>";
+            String htmlForm = "<html>\n" +
+                    "  <head>\n" +
+                    "    <title>Log in</title>\n" +
+                    "  </head>\n" +
+                    "  <body>\n" +
+                    "    <div>\n" +
+                    "      <form action=\"/login\" method=\"GET\">\n" +
+                    "        <label for=\"phoneNumber\">Phone</label>\n" +
+                    "        <br />\n" +
+                    "        <input type=\"text\" name=\"phoneNumber\" />\n" +
+                    "        <br />\n" +
+                    "        <label for=\"pin\">Pin</label>\n" +
+                    "        <br />\n" +
+                    "        <input type=\"password\" name=\"pin\" />\n" +
+                    "        <br />\n" +
+                    "        <button class=\"submit\">Log in</button>\n" +
+                    "      </form>\n" +
+                    "    </div>\n" +
+                    "  </body>\n" +
+                    "</html>";
             
-            String htmlFormNumber = "<html>\n" + 
-            		"	<body>\n" + 
-            		"<h1>\n" +
-            		"Invalid Number\n" +
-            		"</h1>\n" +
-            		"		<form action = \"/submit\" method = \"get\">\n" + 
-            		"			PhoneNumber: <input type = \"text\" name = \"number\" value = \"\"><br>\n" +
-            		"			PIN: <input type = \"text\" name = \"pin\" value = \"\"><br>\n" +
-            		"			<input type = \"submit\" value = \"Login\">\n" + 
-            		"		</form>\n" + 
-            		"	</body>\n" + 
-            		"</html>";
+            String htmlFormNumber = "<html>\n" +
+                    "  <head>\n" +
+                    "    <title>Log in</title>\n" +
+                    "  </head>\n" +
+                    "  <body>\n" +
+                    "    <div>\n" +
+                    "      <h2>Invalid Number</h2>\n" +
+                    "      <form action=\"/login\" method=\"GET\">\n" +
+                    "        <label for=\"phoneNumber\">Phone</label>\n" +
+                    "        <br />\n" +
+                    "        <input type=\"text\" name=\"phoneNumber\" />\n" +
+                    "        <br />\n" +
+                    "        <label for=\"pin\">Pin</label>\n" +
+                    "        <br />\n" +
+                    "        <input type=\"password\" name=\"pin\" />\n" +
+                    "        <br />\n" +
+                    "        <button class=\"submit\">Log in</button>\n" +
+                    "      </form>\n" +
+                    "    </div>\n" +
+                    "  </body>\n" +
+                    "</html>";
             
-            String htmlFormPin = "<html>\n" + 
-            		"	<body>\n" +
-            		"<h1>\n" +
-            		"Invalid PIN\n" +
-            		"</h1>\n" +
-            		"		<form action = \"/submit\" method = \"get\">\n" + 
-            		"			PhoneNumber: <input type = \"text\" name = \"number\" value = \"\"><br>\n" +
-            		"			PIN: <input type = \"text\" name = \"pin\" value = \"\"><br>\n" +
-            		"			<input type = \"submit\" value = \"Login\">\n" + 
-            		"		</form>\n" + 
-            		"	</body>\n" + 
-            		"</html>";
+            String htmlFormPin = "<html>\n" +
+                    "  <head>\n" +
+                    "    <title>Log in</title>\n" +
+                    "  </head>\n" +
+                    "  <body>\n" +
+                    "    <div>\n" +
+                    "      <h2>Invalid Pin</h2>\n" +
+                    "      <form action=\"/login\" method=\"GET\">\n" +
+                    "        <label for=\"phoneNumber\">Phone</label>\n" +
+                    "        <br />\n" +
+                    "        <input type=\"text\" name=\"phoneNumber\" />\n" +
+                    "        <br />\n" +
+                    "        <label for=\"pin\">Pin</label>\n" +
+                    "        <br />\n" +
+                    "        <input type=\"password\" name=\"pin\" />\n" +
+                    "        <br />\n" +
+                    "        <button class=\"submit\">Log in</button>\n" +
+                    "      </form>\n" +
+                    "    </div>\n" +
+                    "  </body>\n" +
+                    "</html>";
             
             String inputLine;
             
@@ -79,7 +108,6 @@ public class LoginForm {
 	    				}
 	    				else if (Login.getCredentials(pNumber, pass).equalsIgnoreCase("invalid pin")) {
 	    					outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlFormPin;
-	    					
 	    				}
 	    				else {
 	    					outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlFormNumber;
