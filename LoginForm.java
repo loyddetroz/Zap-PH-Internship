@@ -100,9 +100,9 @@ public class LoginForm {
 	            	if (inputLine.substring(0,3).equals("GET")) {
 	            		getRequest = inputLine;	                    
 	            		System.out.println("Get Request " + getRequest);
-	            		if (getRequest.contains("number=") && getRequest.contains("pin=")) {
-	            		String pNumber = getRequest.substring(19,31);
-	            		String pass = getRequest.substring(36,42);
+	            		if (getRequest.contains("phoneNumber=") && getRequest.contains("pin=")) {
+	            		String pNumber = getRequest.toString().split("\\s+")[1].split("\\?")[1].split("&")[0].split("=")[1];
+	            		String pass = getRequest.toString().split("\\s+")[1].split("\\?")[1].split("&")[1].split("=")[1];
 	            		if (Login.getCredentials(pNumber, pass).equalsIgnoreCase("success")) {
 	    					ChatClient chatClient = new ChatClient("localhost", 3000, pNumber);
 	    				}
