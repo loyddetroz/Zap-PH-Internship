@@ -37,7 +37,10 @@ public class LoginForm2 {
 
 		try
         {
-            server = new ServerSocket(port);     
+            server = new ServerSocket(port); 
+            StringBuilder builder1 = new StringBuilder();
+            String textHTML = "";
+            
             while(true) {
             socket = server.accept();
             
@@ -116,7 +119,7 @@ public class LoginForm2 {
             		"    <title>Zap ChatBot</title>\r\n" + 
             		"  </head>\r\n" + 
             		"  <body>\r\n" + 
-            		"    <textarea name=\"chatDisplay\" cols=\"70\" rows=\"40\"></textarea>\r\n" + 
+            		"    <textarea name=\"chatDisplay\" cols=\"70\" rows=\"40\">" + textHTML + "</textarea>\r\n" + 
             		"    <form action=\"/chat\" method=\"POST\">\r\n" + 
             		"      <input type=\"text\" name=\"chatMessage\" size=\"65\" />\r\n" + 
             		"      <button type=\"submit\" id=\"sendButton\">Send</button>\r\n" + 
@@ -164,12 +167,19 @@ public class LoginForm2 {
                 if (getRequest.split("\\s")[1].equals("/chat") ) {
                     // sends message to server;
                     dos.writeUTF(text);
-
+                                    
                     // write these to text file
-                    System.out.println(dis.readUTF());
-                    System.out.println(dis.readUTF());
-
-                    outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlChat;
+                    String user = dis.readUTF();
+                    String bot = dis.readUTF();
+                    
+                    builder1.append(user);
+                    builder1.append(bot); 
+                    textHTML = builder1.toString();
+                    
+                    //System.out.println(user);
+                    //System.out.println(bot);
+                    //System.out.println(textHTML);
+                    outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + LoginForm2.updateChatHTML(textHTML);
                 }
                 else {
                 if (Login.getCredentials(fields[0].split("=")[1], fields[1].split("=")[1]).equalsIgnoreCase("success") && getRequest.toString().split("\\s")[1].equals("/login")) {
@@ -265,5 +275,23 @@ public class LoginForm2 {
 
     public static String getCurrentCommand() {
         return currentCommand;
+    }
+    
+    public static String updateChatHTML(String chat) {
+    	String htmlChat = "<html>\r\n" + 
+        		"  <head>\r\n" + 
+        		"    <meta charset=\"UTF-8\" />\r\n" + 
+        		"    <title>Zap ChatBot</title>\r\n" + 
+        		"  </head>\r\n" + 
+        		"  <body>\r\n" + 
+        		"    <textarea name=\"chatDisplay\" cols=\"70\" rows=\"40\">" + chat + "</textarea>\r\n" + 
+        		"    <form action=\"/chat\" method=\"POST\">\r\n" + 
+        		"      <input type=\"text\" name=\"chatMessage\" size=\"65\" />\r\n" + 
+        		"      <button type=\"submit\" id=\"sendButton\">Send</button>\r\n" + 
+        		"\r\n" +  
+        		"    </form>\r\n" + 
+        		"  </body>\r\n" + 
+        		"</html>";
+    	return htmlChat;
     }
 }
