@@ -13,10 +13,10 @@ public class LoginForm2 {
     private ServerSocket server = null;
 
 	public LoginForm2(int port) throws IOException{
+		
 		try
         {
-            server = new ServerSocket(port);
-                    
+            server = new ServerSocket(port);     
             while(true) {
             socket = server.accept();
             
@@ -114,6 +114,7 @@ public class LoginForm2 {
             
             while((inputLine = input.readLine()) != null)
             {	 
+            	//System.out.println(inputLine);
             	if(inputLine.length() > 5) {
 	            	if (inputLine.substring(0,4).equals("POST")) {
                         getRequest = inputLine;
@@ -131,24 +132,26 @@ public class LoginForm2 {
                     break;
                 }
             }
-
+                       
             if (!postInfo.equals("")) {
                 String[] fields = new String[10];
                 fields = PostGetSplitters.doPost(postInfo);
                 System.out.println(Arrays.toString(fields));	                    
                 System.out.println("Get Request " + getRequest);
-                String pNumber = fields[0].split("=")[1];
-                String pass = fields[1].split("=")[1];
-                if (Login.getCredentials(pNumber, pass).equalsIgnoreCase("success")) {
-                    //ChatClient chatClient = new ChatClient("localhost", 3000, pNumber);
-                	outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlChat; 
-                	
+                if (getRequest.toString().split("\\s")[1].equals("/chat") ) {
+                	outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlChat;
                 }
-                else if (Login.getCredentials(pNumber, pass).equalsIgnoreCase("invalid pin")) {
+                else {
+                if (Login.getCredentials(fields[0].split("=")[1], fields[1].split("=")[1]).equalsIgnoreCase("success") && getRequest.toString().split("\\s")[1].equals("/login")) {
+                    //ChatClient chatClient = new ChatClient("localhost", 3000, pNumber);
+                	outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlChat;
+                }
+                else if (Login.getCredentials(fields[0].split("=")[1], fields[1].split("=")[1]).equalsIgnoreCase("invalid pin") && getRequest.toString().split("\\s")[1].equals("/login")) {
                     outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlFormPin;
                 }
                 else {
                     outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlFormNumber;
+                }
                 }
             }
             
