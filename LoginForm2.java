@@ -11,9 +11,16 @@ import java.util.Arrays;
 public class LoginForm2 {
 	private Socket socket = null;
     private ServerSocket server = null;
+    private static String currentCommand = "";
+    private static int currentState = 0;
+    private static StateS[] states = new StateS[4];
+    public static String[] data;
 
 	public LoginForm2(int port) throws IOException{
-		
+		states[0] = new State1();
+        states[1] = new State2();
+        states[2] = new State3();
+        states[3] = new State4();
 		try
         {
             server = new ServerSocket(port);     
@@ -118,7 +125,7 @@ public class LoginForm2 {
             	if(inputLine.length() > 5) {
 	            	if (inputLine.substring(0,4).equals("POST")) {
                         getRequest = inputLine;
-                        System.out.println(postInfo);	                    
+                        //System.out.println(postInfo);	                    
 	            	}
             	}
             	
@@ -135,10 +142,13 @@ public class LoginForm2 {
                        
             if (!postInfo.equals("")) {
                 String[] fields = new String[10];
+                postInfo = postInfo.replaceAll("\\+", " ");
                 fields = PostGetSplitters.doPost(postInfo);
-                System.out.println(Arrays.toString(fields));	                    
-                System.out.println("Get Request " + getRequest);
+                //System.out.println(Arrays.toString(fields));	                    
+                //System.out.println("Get Request " + getRequest);
+                String text = fields[0].split("=")[1];
                 if (getRequest.toString().split("\\s")[1].equals("/chat") ) {
+                	System.out.println(text);
                 	outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlChat;
                 }
                 else {
