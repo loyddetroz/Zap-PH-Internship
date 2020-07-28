@@ -1,8 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -28,37 +23,12 @@ public class LoginForm {
 
 				PrintStream out = new PrintStream(socket.getOutputStream());
 
-				// Reads Html file
-				String htmlNumFileName = "login.html";
-				FileReader htmlNumFr = new FileReader(htmlNumFileName);
-				File htmlNumDir = new File(htmlNumFileName);
-
-				// Html file content
-				String htmlNumFc = "";
-
-				int numFileChar;
-
-				while ((numFileChar = htmlNumFr.read()) != -1) {
-					htmlNumFc += (char) numFileChar;
-				}
-
-				// Reads Html file
-				String htmlPinFileName = "loginPin.html";
-				FileReader htmlPinFr = new FileReader(htmlPinFileName);
-				File htmlPinDir = new File(htmlPinFileName);
-
-				// Html file content
-				String htmlPinFc = "";
-
-				int fileChar;
-
-				while ((fileChar = htmlPinFr.read()) != -1) {
-					htmlPinFc += (char) fileChar;
-				}
-
 				String inputLine;
 
-				String outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlNumFc;
+				// Reads html file to be loaded
+				String htmlPage = readHtmlFile("login");
+
+				String outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlPage;
 
 				String getRequest = "";
 
@@ -73,11 +43,8 @@ public class LoginForm {
 								if (Login.getCredentials(pNumber, pass).equalsIgnoreCase("success")) {
 									ChatClient chatClient = new ChatClient("localhost", 3000, pNumber);
 								} else if (Login.getCredentials(pNumber, pass).equalsIgnoreCase("invalid pin")) {
-									outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlPinFc;
-
-								} else {
-									outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n"
-											+ htmlNumFc;
+									htmlPage = readHtmlFile("loginInvalid");
+									outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlPage;
 								}
 							}
 						}
@@ -97,6 +64,34 @@ public class LoginForm {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	// Reads and parses html file
+	public String readHtmlFile(String htmlFileName) {
+		htmlFileName += ".html";
+		// Reads Html file
+		FileReader htmlFr;
+		String htmlNumFc = "";
+		try {
+			htmlFr = new FileReader(htmlFileName);
+			// Html file content
+
+			int numFileChar;
+
+			while ((numFileChar = htmlFr.read()) != -1) {
+				htmlNumFc += (char) numFileChar;
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return htmlNumFc;
+
 	}
 
 	public static void main(String args[]) throws IOException {
