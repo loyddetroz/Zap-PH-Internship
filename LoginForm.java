@@ -66,7 +66,7 @@ public class LoginForm {
 		}
 	}
 
-	// Reads and parses html file
+	// Reads html file to be loaded
 	public String readHtmlFile(String htmlFileName) {
 		htmlFileName += ".html";
 		// Reads Html file
