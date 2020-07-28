@@ -22,7 +22,7 @@ public class State3 extends StateS {
                 }
             }
 
-            ChatServer.setData(modifiedEntries);
+            LoginForm2.setData(modifiedEntries);
             resultState.setNextState(3);
             resultState.setCommand(entries[0]);
             resultState.setNextMessage("Confirming request to " + input + ".");

@@ -43,14 +43,14 @@ class ClientHandler extends Thread
             		input = dis.readUTF();
             		if (!ChatServer.ids.contains(this.name)) {
             			ChatServer.ids.add(this.name);
-            			for (ClientHandler mc : ChatServer.ar)  
-                        { 
-            			if (mc.name.equals(this.name) && mc.isLoggedIn == true)  
+            			for (ClientHandler mc : ChatServer.ar)
                         {
-	            			
+            			if (mc.name.equals(this.name) && mc.isLoggedIn == true)
+                        {
+
 	                        if (!input.equals("edf6cc9f248bb5717158dc24496746a2d4d93b41")) {
 	                        	mc.dos.writeUTF("User: " + input + "\n");
-		                        mc.dos.writeUTF("Zap: " + "How can I help you?" + "\n");                       
+		                        mc.dos.writeUTF("Zap: " + "How can I help you?" + "\n");
 	                            System.out.println("Done sending updates to clients" + mc);
 	                        }
                         }
@@ -62,16 +62,16 @@ class ClientHandler extends Thread
                     String output = resultState.getNextMessage();
                     currentCommand = resultState.getCommand();
                     currentState = resultState.getNextState();
-                    for (ClientHandler mc : ChatServer.ar)  
-                    { 
-                        if (mc.name.equals(this.name) && mc.isLoggedIn == true)  
+                    for (ClientHandler mc : ChatServer.ar)
+                    {
+                        if (mc.name.equals(this.name) && mc.isLoggedIn == true)
                         {
                         	if (!input.equals("edf6cc9f248bb5717158dc24496746a2d4d93b41")) {
                         	mc.dos.writeUTF("User: " + input + "\n");
-                            mc.dos.writeUTF("Zap: " + output + "\n");                         
+                            mc.dos.writeUTF("Zap: " + output + "\n");
                             System.out.println("Done sending updates to clients" + mc);
                         	}
-                        } 
+                        }
                     }
             		}
             }
@@ -92,7 +92,7 @@ class ClientHandler extends Thread
         }catch(IOException e){ 
             e.printStackTrace(); 
         } 
-    } 
+    }
     
     public static String[] getData() {
         return data;
