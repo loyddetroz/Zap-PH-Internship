@@ -124,7 +124,8 @@ public class LoginForm2 {
                         System.out.println(dis.readUTF());
                         System.out.println(dis.readUTF());
 
-                        saveFile();
+                        saveFile(dis.readUTF());
+                        saveFile(dis.readUTF());
 
                         outputLine = "HTTP/1.1 200 OK\n" + "Content-Type: text/html" + "\n\n" + htmlChat;
                     } else {
@@ -184,14 +185,14 @@ public class LoginForm2 {
         return listOfLines;
     }
 
-    public void saveFile() {
+    public void saveFile(String chatText) {
         File writeFile;
         Writer writer = null;
 
         writeFile = new File("save/ " + userNum + ".txt");
         try {
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(writeFile), "utf-8"));
-            writer.write(dis.readUTF());
+            writer.write(chatText);
         } catch (IOException ex) {
             // report
         } finally {
@@ -244,5 +245,5 @@ public class LoginForm2 {
         		"  </body>\r\n" + 
         		"</html>";
     	return htmlChat;
-
+    }
 }
