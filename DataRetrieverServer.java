@@ -106,7 +106,7 @@ public class DataRetrieverServer {
     } 
 	
     public static void main(String[] args) {
-	    DataRetrieverServer server = new DataRetrieverServer(5000);
+	    DataRetrieverServer server = new DataRetrieverServer(8000);
     }
 
 	public static String getBalance(String number, String pin, String merchantName){

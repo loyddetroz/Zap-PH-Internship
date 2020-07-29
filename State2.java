@@ -23,7 +23,7 @@ public class State2 extends StateS {
     		}
         	int m = CommandList.validateKeywords(entries[0], modifiedEntries);
         	if (modifiedEntries.length == m || m == 123456) {
-                LoginForm2.setData(modifiedEntries);
+                ClientHandler.setData(modifiedEntries);
                 resultState.setNextState(3);
                 resultState.setCommand(entries[0]);
                 resultState.setNextMessage("Confirming request to " + input + ".");

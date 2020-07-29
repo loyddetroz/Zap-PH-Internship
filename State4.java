@@ -14,8 +14,9 @@ public class State4 extends StateS {
         if (input.toLowerCase().contains("yes")) {
             resultState.setNextState(0);
             resultState.setCommand(command);
-            DataRetrieverClient client = new DataRetrieverClient("localhost", 5000);
+            DataRetrieverClient client = new DataRetrieverClient("localhost", 8000);
             String num = DataRetrieverClient.getString();
+            System.out.println(num);
             resultState.setNextMessage(num + "\n"  + "Anything else I can help you with?");
         } 
         else if (input.toLowerCase().contains("no")) {
@@ -36,7 +37,7 @@ public class State4 extends StateS {
     		}
         	int m = CommandList.validateKeywords(entries[0], modifiedEntries);
         	if (modifiedEntries.length == m || m == 123456) {
-                LoginForm2.setData(modifiedEntries);
+                ClientHandler.setData(modifiedEntries);
                 resultState.setNextState(3);
                 resultState.setCommand(entries[0]);
                 resultState.setNextMessage("Confirming request to " + input + ".");

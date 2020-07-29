@@ -264,18 +264,6 @@ public class LoginForm2 {
 
         return fields;
     }
-
-    public static void setData(String[] data) {
-        LoginForm2.data = data;
-    }
-
-    public static String[] getData() {
-        return data;
-    }
-
-    public static String getCurrentCommand() {
-        return currentCommand;
-    }
     
     public static String updateChatHTML(String chat) {
     	String htmlChat = "<html>\r\n" + 

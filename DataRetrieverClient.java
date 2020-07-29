@@ -43,8 +43,8 @@ public class DataRetrieverClient {
         } 
   
         // string to read message from input 
-        String[] data = LoginForm2.getData();
-        String command = LoginForm2.getCurrentCommand();
+        String[] data = ClientHandler.getData();
+        String command = ClientHandler.getCurrentCommand();
         StringBuilder builder = new StringBuilder();
         for(String s : data) {
             builder.append(s + " ");
